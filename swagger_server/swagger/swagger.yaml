@@ -1,0 +1,708 @@
+openapi: 3.0.0
+info:
+  title: Swagger Employex API
+  description: "This is a sample API that allows to manage Employex system, which\
+    \ serves for users seeking to apply for job offersm\n"
+  contact:
+    name: Ricardo Ruíz
+    email: ricardorzan@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/ricardorzan/Employex/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://employex.swagger.io/v2
+tags:
+- name: general_user
+  description: Operations about general user
+- name: independient_user
+  description: Operations about independient user
+- name: organization_user
+  description: Operations about organization user
+- name: job_offer
+  description: Everything about jobs offer
+- name: aplications
+  description: Everything about jobs aplications
+- name: education
+- name: laboral_experience
+- name: certification
+- name: section
+paths:
+  /users/login:
+    get:
+      tags:
+      - general_user
+      summary: Logs user into the system
+      operationId: login_user
+      parameters:
+      - name: username
+        in: query
+        description: The user name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              style: simple
+              explode: false
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: string
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: string
+        "400":
+          description: Invalid username/password supplied
+      x-openapi-router-controller: swagger_server.controllers.general_user_controller
+  /users/logout:
+    get:
+      tags:
+      - general_user
+      summary: Logs out current logged in user session
+      operationId: logout_user
+      responses:
+        default:
+          description: successful operation
+      x-openapi-router-controller: swagger_server.controllers.general_user_controller
+  /users/independient_user:
+    post:
+      tags:
+      - independient_user
+      summary: Register independient user
+      operationId: register_indpendient_user
+      requestBody:
+        description: Independient user object to register
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndependientUser'
+        required: true
+      responses:
+        default:
+          description: successful operation
+      x-openapi-router-controller: swagger_server.controllers.independient_user_controller
+  /users/independient_user/{userId}:
+    get:
+      tags:
+      - independient_user
+      summary: Get user by user id
+      operationId: get_independint_user_by_id
+      parameters:
+      - name: userId
+        in: path
+        description: The id that needs to be fetched. Use user1 for testing.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndependientUser'
+        "400":
+          description: Invalid username supplied
+        "404":
+          description: User not found
+      x-openapi-router-controller: swagger_server.controllers.independient_user_controller
+  /users/independient_user/{userId}/education:
+    post:
+      tags:
+      - education
+      summary: Adds education info to an independient user
+      operationId: add_education
+      parameters:
+      - name: userId
+        in: path
+        description: The id that needs to be fetched. Use user1 for testing.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/Education'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.education_controller
+  /users/independient_user/{userId}/laboral_experience:
+    post:
+      tags:
+      - laboral_experience
+      summary: Adds laboral experience info to an independient user
+      operationId: add_laboral_experience
+      parameters:
+      - name: userId
+        in: path
+        description: The id that needs to be fetched. Use user1 for testing.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/LaboralExperience'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.laboral_experience_controller
+  /users/organization_user:
+    post:
+      tags:
+      - organization_user
+      summary: Register organization user
+      operationId: register_organization_user
+      requestBody:
+        description: Organization user object to register
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUser'
+        required: true
+      responses:
+        default:
+          description: successful operation
+      x-openapi-router-controller: swagger_server.controllers.organization_user_controller
+  /users/organization_user/{userId}:
+    get:
+      tags:
+      - organization_user
+      summary: Get user by user id
+      operationId: get_organization_user_by_id
+      parameters:
+      - name: userId
+        in: path
+        description: The id that needs to be fetched. Use user1 for testing.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndependientUser'
+        "400":
+          description: Invalid username supplied
+        "404":
+          description: User not found
+      x-openapi-router-controller: swagger_server.controllers.organization_user_controller
+  /users/{userId}/job_offer:
+    get:
+      tags:
+      - job_offer
+      summary: Returns a list of job offers published by the user
+      description: A list of the job offers published by the user
+      operationId: get_job_offers_published_by_the_user
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobOffer'
+                x-content-type: application/json
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+  /users/{userId}/job_offer/{jobOfferId}/aplications:
+    get:
+      tags:
+      - job_offer
+      - aplications
+      summary: Returns a list of aplications in a specified job offer published by
+        the user
+      description: A list of aplications in the job offer specified published by the
+        user
+      operationId: get_job_offers_aplications
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: jobOfferId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Aplication'
+                x-content-type: application/json
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+  /users/{userId}/job_offers/{jobOfferId}/aplications:
+    post:
+      tags:
+      - job_offer
+      - aplications
+      summary: Adds an aplication to a specified job offer
+      description: Adds an aplication to a specified job offer
+      operationId: add_aplication_to_job_offer
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: jobOfferId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+  /job_offers:
+    get:
+      tags:
+      - job_offer
+      summary: Returns a list of job offers
+      description: A list of the last ten job offers published by the others users
+      operationId: get_job_offers
+      parameters:
+      - name: page
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobOffer'
+                x-content-type: application/json
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+    post:
+      tags:
+      - job_offer
+      summary: Add a new job offer to the catalog
+      operationId: add_job_offer
+      requestBody:
+        $ref: '#/components/requestBodies/JobOffer'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+components:
+  schemas:
+    Aplication:
+      required:
+      - aproved
+      - date
+      - independientUserId
+      type: object
+      properties:
+        date:
+          type: string
+        aproved:
+          type: boolean
+          default: false
+        independientUserId:
+          type: integer
+          format: uuid
+      example:
+        date: date
+        aproved: false
+        independientUserId: 0
+    Aptitude:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        name: name
+        description: description
+    Certification:
+      required:
+      - credentialId
+      - expeditionDate
+      - issuingCompany
+      - title
+      type: object
+      properties:
+        credentialId:
+          type: integer
+        credentialURL:
+          type: string
+        issuingCompany:
+          type: string
+        expirationDate:
+          type: string
+          format: date
+        expeditionDate:
+          type: string
+          format: date
+        title:
+          type: string
+    Education:
+      required:
+      - average
+      - description
+      - discipline
+      - startDate
+      - title
+      - university
+      type: object
+      properties:
+        description:
+          type: string
+        discipline:
+          type: string
+        endDate:
+          type: string
+          format: date
+        startDate:
+          type: string
+          format: date
+        average:
+          type: number
+          format: float
+        title:
+          type: string
+        university:
+          type: string
+    IndependientUser:
+      required:
+      - name
+      - ocupation
+      - surnames
+      - user
+      type: object
+      properties:
+        surnames:
+          type: string
+        name:
+          type: string
+        ocupation:
+          type: string
+        persoanlDescription:
+          type: string
+        aptitude:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aptitude'
+        user:
+          $ref: '#/components/schemas/User'
+      example:
+        ocupation: ocupation
+        name: name
+        persoanlDescription: persoanlDescription
+        aptitude:
+        - name: name
+          description: description
+        - name: name
+          description: description
+        surnames: surnames
+        user:
+          country: country
+          password: password
+          userStatus: 6
+          profilePhoto:
+            file: ""
+            id: 1
+          city: city
+          id: 0
+          email: email
+    JobOffer:
+      required:
+      - description
+      - job
+      - jobType
+      - location
+      type: object
+      properties:
+        job:
+          type: string
+        description:
+          type: string
+        jobType:
+          type: string
+        location:
+          type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        media:
+          type: array
+          items:
+            $ref: '#/components/schemas/Media'
+      example:
+        description: description
+        location: location
+        media:
+        - file: ""
+          id: 1
+        - file: ""
+          id: 1
+        job: job
+        jobType: jobType
+        tags:
+        - name: name
+          id: 0
+        - name: name
+          id: 0
+    LaboralExperience:
+      required:
+      - currentJob
+      - jobTitle
+      - location
+      - startDate
+      type: object
+      properties:
+        jobTitle:
+          type: string
+        currentJob:
+          type: boolean
+          default: false
+        endDate:
+          type: string
+          format: date
+        startDate:
+          type: string
+          format: date
+        companyName:
+          type: string
+        sector:
+          type: string
+        jobType:
+          type: string
+        location:
+          type: string
+    Media:
+      required:
+      - file
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        file:
+          type: string
+          format: binary
+      example:
+        file: ""
+        id: 1
+    OrganizationUser:
+      type: object
+      properties:
+        about:
+          type: string
+        postalCode:
+          type: integer
+          format: int64
+        contactName:
+          type: string
+        contactPhone:
+          type: string
+        contactEmail:
+          type: string
+        password:
+          type: string
+        webSite:
+          type: string
+        workSector:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+    Section:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        media:
+          type: array
+          items:
+            $ref: '#/components/schemas/Media'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        name: name
+        id: 0
+    User:
+      required:
+      - city
+      - country
+      - email
+      - userStatus
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+        password:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        userStatus:
+          type: integer
+          description: User Status
+          format: int32
+        profilePhoto:
+          $ref: '#/components/schemas/Media'
+      example:
+        country: country
+        password: password
+        userStatus: 6
+        profilePhoto:
+          file: ""
+          id: 1
+        city: city
+        id: 0
+        email: email
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    body:
+      required:
+      - date
+      properties:
+        date:
+          type: string
+  requestBodies:
+    Certification:
+      description: Certification object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Certification'
+      required: true
+    Education:
+      description: Education object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Education'
+      required: true
+    JobOffer:
+      description: Job offer object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/JobOffer'
+      required: true
+    LaboralExperience:
+      description: Laboral experience object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LaboralExperience'
+      required: true
+    Section:
+      description: Section object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Section'
+      required: true
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://petstore.swagger.io/oauth/dialog
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+      x-tokenInfoFunc: swagger_server.controllers.authorization_controller.check_petstore_auth
+      x-scopeValidateFunc: swagger_server.controllers.authorization_controller.validate_scope_petstore_auth
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+      x-apikeyInfoFunc: swagger_server.controllers.authorization_controller.check_api_key
+
