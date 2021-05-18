@@ -1,0 +1,1006 @@
+openapi: 3.0.0
+info:
+  title: Employex
+  description: "This is a sample API that allows to manage Employex system, which\
+    \ serves for users seeking to apply for job offers.\n"
+  contact:
+    name: Ricardo Ruíz
+    url: https://twitter.com/ricardordars
+    email: ricardorzan@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/ricardorzan/Employex/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://employex.swagger.io/v2
+tags:
+- name: general_user
+  description: Operations about general user
+- name: independient_user
+  description: Operations about independient user
+- name: organization_user
+  description: Operations about organization user
+- name: job_offer
+  description: Everything about jobs offer
+- name: aplications
+  description: Everything about aplications
+- name: education
+  description: Everything about education section of independients users
+- name: laboral_experience
+  description: Everything about laboral experience section of independients users
+- name: certification
+  description: Everything about cerrification section of independients users
+- name: section
+  description: Everything about especial section of independients users
+paths:
+  /users/login:
+    get:
+      tags:
+      - general_user
+      summary: Logs user into the system
+      operationId: login_user
+      parameters:
+      - name: username
+        in: query
+        description: The user name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              style: simple
+              explode: false
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              style: simple
+              explode: false
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: string
+                x-content-type: application/json
+        "400":
+          description: Invalid username/password supplied
+      x-openapi-router-controller: swagger_server.controllers.general_user_controller
+  /users/logout:
+    get:
+      tags:
+      - general_user
+      summary: Logs out current logged in user session
+      operationId: logout_user
+      responses:
+        default:
+          description: successful operation
+      x-openapi-router-controller: swagger_server.controllers.general_user_controller
+  /users/independient_user:
+    post:
+      tags:
+      - independient_user
+      summary: Register independient user
+      operationId: register_indpendient_user
+      requestBody:
+        description: Independient user object to register
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndependientUser'
+        required: true
+      responses:
+        default:
+          description: successful operation
+      x-openapi-router-controller: swagger_server.controllers.independient_user_controller
+  /users/independient_user/{user_id}:
+    get:
+      tags:
+      - independient_user
+      summary: Get user by user id
+      operationId: get_independint_user_by_id
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndependientUser'
+        "400":
+          description: Invalid username supplied
+        "404":
+          description: User not found
+      x-openapi-router-controller: swagger_server.controllers.independient_user_controller
+  /users/independient_user/{user_id}/education:
+    post:
+      tags:
+      - education
+      summary: Adds education info to an independient user
+      operationId: add_education
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/Education'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.education_controller
+  /users/independient_user/{user_id}/laboral_experience:
+    post:
+      tags:
+      - laboral_experience
+      summary: Adds laboral experience info to an independient user
+      operationId: add_laboral_experience
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/LaboralExperience'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.laboral_experience_controller
+  /users/organization_user:
+    post:
+      tags:
+      - organization_user
+      summary: Register organization user
+      operationId: register_organization_user
+      requestBody:
+        description: Organization user object to register
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUser'
+        required: true
+      responses:
+        default:
+          description: successful operation
+      x-openapi-router-controller: swagger_server.controllers.organization_user_controller
+  /users/organization_user/{user_id}:
+    get:
+      tags:
+      - organization_user
+      summary: Get user by user id
+      operationId: get_organization_user_by_id
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndependientUser'
+        "400":
+          description: Invalid username supplied
+        "404":
+          description: User not found
+      x-openapi-router-controller: swagger_server.controllers.organization_user_controller
+  /users/{user_id}/job_offer:
+    get:
+      tags:
+      - job_offer
+      summary: Returns a list of job offers published by the user
+      description: A list of the job offers published by the user
+      operationId: get_job_offers_published_by_the_user
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobOffer'
+                x-content-type: application/json
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+  /users/{user_id}/job_offer/{job_offer_id}/aplications:
+    get:
+      tags:
+      - job_offer
+      - aplications
+      summary: Returns a list of aplications in a specified job offer published by
+        the user
+      description: A list of aplications in the job offer specified published by the
+        user
+      operationId: get_job_offers_aplications
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: job_offer_id
+        in: path
+        description: Unique identifier of the job offer
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Aplication'
+                x-content-type: application/json
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+  /users/{user_id}/job_offers/{job_offer_id}/aplications:
+    post:
+      tags:
+      - job_offer
+      - aplications
+      summary: Adds an aplication to a specified job offer
+      description: Adds an aplication to a specified job offer
+      operationId: add_aplication_to_job_offer
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: job_offer_id
+        in: path
+        description: Unique identifier of the job offer
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+  /job_offers:
+    get:
+      tags:
+      - job_offer
+      summary: Returns a list of job offers
+      description: A list of the last ten job offers published by the others users
+      operationId: get_job_offers
+      parameters:
+      - name: page
+        in: query
+        description: Pagination
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobOffer'
+                x-content-type: application/json
+        "400":
+          description: Invalid status value
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+    post:
+      tags:
+      - job_offer
+      summary: Add a new job offer to the catalog
+      operationId: add_job_offer
+      requestBody:
+        $ref: '#/components/requestBodies/JobOffer'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.job_offer_controller
+components:
+  schemas:
+    Aplication:
+      required:
+      - aproved
+      - date
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date on which was applied for the job
+          format: date
+        aproved:
+          type: boolean
+          description: Flah to know if the aplication was aproved or not
+          default: false
+        independient_user_id:
+          type: string
+          description: From who is the aplication
+          format: uuid
+        job_offer_id:
+          type: string
+          description: Job offer's id
+          format: uuid
+      description: Aplication in a job offer from an independient user
+      example:
+        date: 2000-01-23
+        independient_user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        job_offer_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        aproved: false
+    Aptitude:
+      maxLength: 12
+      type: string
+      description: Different aptitudes of an independent user
+    Certification:
+      required:
+      - issuing_company
+      - title
+      type: object
+      properties:
+        credential_id:
+          type: string
+          description: Unique identifier of certification
+          format: uuid
+        credential_url:
+          type: string
+          description: Certification's url
+        issuing_company:
+          type: string
+          description: Certification issuing company
+        expiration_date:
+          type: string
+          description: Date the certification expires
+          format: date
+        expedition_date:
+          type: string
+          description: Date the certification was issued
+          format: date
+        title:
+          type: string
+          description: Title of the certification taken
+      description: Main structure of a certification object
+      example:
+        credential_url: credential_url
+        expedition_date: 2000-01-23
+        issuing_company: issuing_company
+        expiration_date: 2000-01-23
+        title: title
+        credential_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    Education:
+      required:
+      - title
+      - university
+      type: object
+      properties:
+        education_id:
+          type: string
+          description: Unique identifier of education
+          format: uuid
+        description:
+          type: string
+          description: Talk about what the education is about
+        discipline:
+          type: string
+          description: Education's discipline
+        end_date:
+          type: string
+          description: Date where the education finished
+          format: date
+        start_date:
+          type: string
+          description: Date where the education started
+          format: date
+        average:
+          type: number
+          description: Average obtained upon completion of studies
+          format: float
+        title:
+          type: string
+          description: Title of studies taken
+        university:
+          type: string
+          description: University where the education was taken
+      description: Main structure of a education object
+      example:
+        end_date: 2000-01-23
+        average: 0.8008282
+        university: university
+        education_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        description: description
+        discipline: discipline
+        title: title
+        start_date: 2000-01-23
+    IndependientUser:
+      required:
+      - name
+      type: object
+      properties:
+        surnames:
+          type: string
+          description: User' surnames
+        name:
+          type: string
+          description: User's name
+        ocupation:
+          type: string
+          description: Actual job
+        persoanl_description:
+          type: string
+          description: Short description of the user
+        aptitude:
+          maxItems: 5
+          minItems: 0
+          type: array
+          description: "Aptitudes selected by the user, 5 maximum"
+          items:
+            $ref: '#/components/schemas/Aptitude'
+        user:
+          $ref: '#/components/schemas/User'
+        education:
+          type: array
+          description: Education registered by the user
+          items:
+            $ref: '#/components/schemas/Education'
+        laboral_experience:
+          type: array
+          description: Laboral experiences registered by the user
+          items:
+            $ref: '#/components/schemas/LaboralExperience'
+        certification:
+          type: array
+          description: Certifications taken by the user
+          items:
+            $ref: '#/components/schemas/Certification'
+        section:
+          type: array
+          description: Sections published by the user
+          items:
+            $ref: '#/components/schemas/Section'
+      description: Main structure of a independent user
+      example:
+        persoanl_description: persoanl_description
+        ocupation: ocupation
+        education:
+        - end_date: 2000-01-23
+          average: 0.8008282
+          university: university
+          education_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          description: description
+          discipline: discipline
+          title: title
+          start_date: 2000-01-23
+        - end_date: 2000-01-23
+          average: 0.8008282
+          university: university
+          education_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          description: description
+          discipline: discipline
+          title: title
+          start_date: 2000-01-23
+        name: name
+        aptitude:
+        - aptitude
+        - aptitude
+        - aptitude
+        - aptitude
+        - aptitude
+        section:
+        - section_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          description: description
+          media:
+          - null
+          - null
+          - null
+          - null
+          title: title
+        - section_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          description: description
+          media:
+          - null
+          - null
+          - null
+          - null
+          title: title
+        surnames: surnames
+        laboral_experience:
+        - end_date: 2000-01-23
+          laboral_experience_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          company_name: company_name
+          location: location
+          current_job: false
+          job_title: job_title
+          sector: "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
+          job_category: CARPINTERO
+          start_date: 2000-01-23
+        - end_date: 2000-01-23
+          laboral_experience_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          company_name: company_name
+          location: location
+          current_job: false
+          job_title: job_title
+          sector: "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
+          job_category: CARPINTERO
+          start_date: 2000-01-23
+        user:
+          country: country
+          user_status: active
+          password: contrasenia
+          profile_photo:
+            file: ""
+            media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          city: city
+          email: example@gmail.com
+        certification:
+        - credential_url: credential_url
+          expedition_date: 2000-01-23
+          issuing_company: issuing_company
+          expiration_date: 2000-01-23
+          title: title
+          credential_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - credential_url: credential_url
+          expedition_date: 2000-01-23
+          issuing_company: issuing_company
+          expiration_date: 2000-01-23
+          title: title
+          credential_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    JobOffer:
+      required:
+      - description
+      - job
+      type: object
+      properties:
+        job_offer_id:
+          type: string
+          description: Unique identifier of the job offer
+          format: uuid
+        job:
+          type: string
+          description: Title of the job
+          example: UI/UX designer
+        description:
+          type: string
+          description: Talk about what the job offer is about
+        job_category:
+          $ref: '#/components/schemas/JobCategory'
+        location:
+          type: string
+          description: Location where the job offer is
+        tags:
+          maxItems: 5
+          minItems: 0
+          type: array
+          description: Differents tags associated to the job offer
+          items:
+            $ref: '#/components/schemas/Tag'
+        media:
+          maxItems: 4
+          minItems: 0
+          type: array
+          description: Multimedia data related to the job offer
+          items:
+            $ref: '#/components/schemas/Media'
+      description: Main structure of a job offer
+      example:
+        description: description
+        location: location
+        job_offer_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        media:
+        - file: ""
+          media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - file: ""
+          media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - file: ""
+          media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - file: ""
+          media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        job: UI/UX designer
+        job_category: CARPINTERO
+        tags:
+        - tags
+        - tags
+        - tags
+        - tags
+        - tags
+    JobCategory:
+      type: string
+      description: Different's categories of job
+      enum:
+      - CARPINTERO
+      - CERRAJERO
+      - MECANICO
+      - OBRERO
+      - FONTANERO
+      - SOLDADOR
+      - ARTISTA
+      - SASTRE
+      - AGRIGULTOR
+      - COCINERO
+      - REPARTIDOR
+      - SEGURIDAD
+      - ESTILISTA
+      - EXTERMINADOR
+      - CAMARERO
+      - CONDUCTOR
+      - ELECTRICISTA
+      - FOTOGRAFO
+      - CASERO
+      - JARDINERO
+      - VENDEDOR
+      - DENTISTA
+      - ENFERMERO
+      - DOCTOR
+      - EMPRESARIO
+      - DEPORTISTA
+      - ADMINISTRADOR
+      - SECRETARIO
+      - SOLDADO
+      - CIENTIFICO
+      - PROFESOR
+      - POLICIA
+      - GERENTE
+      - BOMBERO
+      - INGENIERO
+      - ARQUITECTO
+      - PERIODISTA
+      - BIBLIOTECARIO
+      - ABOGADO
+      - OTRO
+    LaboralExperience:
+      required:
+      - current_job
+      - job_title
+      type: object
+      properties:
+        laboral_experience_id:
+          type: string
+          description: Unique identifier of the laboral experience
+          format: uuid
+        job_title:
+          type: string
+          description: Job's title
+        current_job:
+          type: boolean
+          description: A flag to know if this laboral experience is the current job
+            of the user
+          default: false
+        end_date:
+          pattern: "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/"
+          type: string
+          description: Date where the laboral experience finished
+          format: date
+        start_date:
+          pattern: "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/"
+          type: string
+          description: Date where the laboral experience started
+          format: date
+        company_name:
+          type: string
+          description: Organization's name
+        sector:
+          $ref: '#/components/schemas/Sector'
+        job_category:
+          $ref: '#/components/schemas/JobCategory'
+        location:
+          type: string
+          description: Location where the work experience was lived
+      description: Structure of a laboral experience object
+      example:
+        end_date: 2000-01-23
+        laboral_experience_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        company_name: company_name
+        location: location
+        current_job: false
+        job_title: job_title
+        sector: "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
+        job_category: CARPINTERO
+        start_date: 2000-01-23
+    Media:
+      type: object
+      properties:
+        media_id:
+          type: string
+          description: Binary data of the media file
+          format: uuid
+        file:
+          type: string
+          description: Binary data of the media file
+          format: binary
+      description: A multimedia file
+      example:
+        file: ""
+        media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+    OrganizationUser:
+      required:
+      - contact_email
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Organization's name
+        about:
+          type: string
+          description: Organization overview
+        zip_code:
+          maximum: 5
+          minimum: 5
+          type: integer
+          description: Zip code where the organization is located
+          format: int64
+        contact_name:
+          type: string
+          description: Contact person's name
+        contact_phone:
+          maxLength: 12
+          minLength: 5
+          type: string
+          description: Contact person's phone
+          format: phone
+        contact_email:
+          maxLength: 320
+          minLength: 5
+          pattern: "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"
+          type: string
+          description: Contact person's email
+          format: email
+          example: example@gmail.org
+        web_site:
+          type: string
+          description: Organization's web site
+        work_sector:
+          $ref: '#/components/schemas/Sector'
+        user:
+          $ref: '#/components/schemas/User'
+      description: Main structure of an organization user object
+    Section:
+      required:
+      - description
+      - title
+      type: object
+      properties:
+        section_id:
+          type: string
+          description: Unique identifier of the section
+          format: uuid
+        title:
+          type: string
+          description: Title of the section
+        description:
+          type: string
+          description: Main text of the section
+        media:
+          maxItems: 4
+          minItems: 0
+          type: array
+          description: Multimedia data related to the section
+          items:
+            $ref: '#/components/schemas/Media'
+      description: Personal section that represents a remarkable event or recognition
+        by the independent user
+      example:
+        section_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        description: description
+        media:
+        - null
+        - null
+        - null
+        - null
+        title: title
+    Sector:
+      type: string
+      enum:
+      - "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
+      - "ALIMENTACION, BEBIDAS, TABACO"
+      - COMERCIO
+      - CONSTRUCCION
+      - EDUCIACION
+      - FABRICACION DE MATERIAL DE TRANSPORTE
+      - FUNCION PUBLICA
+      - "HOTELERIA, RESTAURACIÓN, TURISMO"
+      - INDUSTRIAS QUIMICAS
+      - INGENIERIA MECANICA Y ELECTICA
+      - "MEDIOS DE COMUNICACION, CULTURA, GRAFICOS"
+      - MINERIA
+      - "PETROLEO Y PRODUCCION DE GASES, REFINACION DE PETROLEO"
+      - PRODUCCION DE MATERIALES BASICOS
+      - SERVICIOS DE CORREO Y TELECOMUNICACIONES
+      - SERVICIOS DE SALUD
+      - "SERVICIOS FINANCIEROS, SERVICIOS PROFESIONALES"
+      - SERVICIOS PUBLICOS
+      - "SILVICULTURA, MADERA, CELULOSA, PAPEL"
+      - "TEXTILES, VESTIDO, CUERO, CALZADO"
+      - TRANSPORTE
+      - TRANSPORTE MARITIMO
+    Tag:
+      maxLength: 15
+      minLength: 4
+      type: string
+      description: Different categories the job offer might fit into
+    User:
+      required:
+      - email
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: Unique identifier of the user
+          format: uuid
+        email:
+          maxLength: 320
+          minLength: 5
+          pattern: "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"
+          type: string
+          description: User's email
+          format: email
+          example: example@gmail.com
+        password:
+          maxLength: 100
+          minLength: 8
+          pattern: "/^(?=.*?[0-z]).{8,}$/"
+          type: string
+          description: User's password
+          format: password
+          example: contrasenia
+        city:
+          type: string
+          description: City where the user lives
+        country:
+          type: string
+          description: Country where the user lives
+        user_status:
+          type: string
+          description: User status
+          default: active
+          enum:
+          - active
+          - inactive
+        profile_photo:
+          $ref: '#/components/schemas/Media'
+      description: "Main structure of an user object, only includes general data"
+      example:
+        country: country
+        user_status: active
+        password: contrasenia
+        profile_photo:
+          file: ""
+          media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        city: city
+        email: example@gmail.com
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    body:
+      required:
+      - date
+      properties:
+        date:
+          type: string
+  requestBodies:
+    Certification:
+      description: Certification object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Certification'
+      required: true
+    Education:
+      description: Education object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Education'
+      required: true
+    JobOffer:
+      description: Job offer object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/JobOffer'
+      required: true
+    LaboralExperience:
+      description: Laboral experience object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LaboralExperience'
+      required: true
+    Section:
+      description: Section object that needs to be added to the catalog
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Section'
+      required: true
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://petstore.swagger.io/oauth/dialog
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+      x-tokenInfoFunc: swagger_server.controllers.authorization_controller.check_petstore_auth
+      x-scopeValidateFunc: swagger_server.controllers.authorization_controller.validate_scope_petstore_auth
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+      x-apikeyInfoFunc: swagger_server.controllers.authorization_controller.check_api_key
+

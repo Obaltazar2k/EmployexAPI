@@ -10,7 +10,7 @@ def get_independint_user_by_id(user_id):  # noqa: E501
 
      # noqa: E501
 
-    :param user_id: The id that needs to be fetched. Use user1 for testing.
+    :param user_id: Unique identifier of the user
     :type user_id: int
 
     :rtype: IndependientUser

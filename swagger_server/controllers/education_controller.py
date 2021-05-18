@@ -12,7 +12,7 @@ def add_education(body, user_id):  # noqa: E501
 
     :param body: Education object that needs to be added to the catalog
     :type body: dict | bytes
-    :param user_id: The id that needs to be fetched. Use user1 for testing.
+    :param user_id: Unique identifier of the user
     :type user_id: int
 
     :rtype: None

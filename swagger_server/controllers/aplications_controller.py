@@ -11,9 +11,9 @@ def add_aplication_to_job_offer(user_id, job_offer_id, body=None):  # noqa: E501
 
     Adds an aplication to a specified job offer # noqa: E501
 
-    :param user_id: 
+    :param user_id: Unique identifier of the user
     :type user_id: int
-    :param job_offer_id: 
+    :param job_offer_id: Unique identifier of the job offer
     :type job_offer_id: int
     :param body: 
     :type body: dict | bytes
@@ -30,9 +30,9 @@ def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
 
     A list of aplications in the job offer specified published by the user # noqa: E501
 
-    :param user_id: 
+    :param user_id: Unique identifier of the user
     :type user_id: int
-    :param job_offer_id: 
+    :param job_offer_id: Unique identifier of the job offer
     :type job_offer_id: int
 
     :rtype: List[Aplication]
