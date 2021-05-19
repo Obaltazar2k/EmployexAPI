@@ -6,7 +6,6 @@ from flask import json
 from six import BytesIO
 
 from swagger_server.models.aplication import Aplication  # noqa: E501
-from swagger_server.models.body import Body  # noqa: E501
 from swagger_server.models.job_offer import JobOffer  # noqa: E501
 from swagger_server.test import BaseTestCase
 
@@ -19,12 +18,9 @@ class TestJobOfferController(BaseTestCase):
 
         Adds an aplication to a specified job offer
         """
-        body = Body()
         response = self.client.open(
             '/ricardorzan/Employex/1.0.0/users/{user_id}/job_offers/{job_offer_id}/aplications'.format(user_id=56, job_offer_id=56),
-            method='POST',
-            data=json.dumps(body),
-            content_type='application/json')
+            method='POST')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

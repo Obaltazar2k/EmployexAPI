@@ -315,11 +315,6 @@ paths:
         explode: false
         schema:
           type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/body'
       responses:
         "405":
           description: Invalid input
@@ -394,10 +389,6 @@ components:
         independient_user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         job_offer_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         aproved: false
-    Aptitude:
-      maxLength: 12
-      type: string
-      description: Different aptitudes of an independent user
     Certification:
       required:
       - issuing_company
@@ -494,13 +485,6 @@ components:
         persoanl_description:
           type: string
           description: Short description of the user
-        aptitude:
-          maxItems: 5
-          minItems: 0
-          type: array
-          description: "Aptitudes selected by the user, 5 maximum"
-          items:
-            $ref: '#/components/schemas/Aptitude'
         user:
           $ref: '#/components/schemas/User'
         education:
@@ -545,12 +529,6 @@ components:
           title: title
           start_date: 2000-01-23
         name: name
-        aptitude:
-        - aptitude
-        - aptitude
-        - aptitude
-        - aptitude
-        - aptitude
         section:
         - section_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
@@ -633,13 +611,6 @@ components:
         location:
           type: string
           description: Location where the job offer is
-        tags:
-          maxItems: 5
-          minItems: 0
-          type: array
-          description: Differents tags associated to the job offer
-          items:
-            $ref: '#/components/schemas/Tag'
         media:
           maxItems: 4
           minItems: 0
@@ -663,12 +634,6 @@ components:
           media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         job: UI/UX designer
         job_category: CARPINTERO
-        tags:
-        - tags
-        - tags
-        - tags
-        - tags
-        - tags
     JobCategory:
       type: string
       description: Different's categories of job
@@ -879,11 +844,6 @@ components:
       - "TEXTILES, VESTIDO, CUERO, CALZADO"
       - TRANSPORTE
       - TRANSPORTE MARITIMO
-    Tag:
-      maxLength: 15
-      minLength: 4
-      type: string
-      description: Different categories the job offer might fit into
     User:
       required:
       - email
@@ -935,22 +895,6 @@ components:
         user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         city: city
         email: example@gmail.com
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
-    body:
-      required:
-      - date
-      properties:
-        date:
-          type: string
   requestBodies:
     Certification:
       description: Certification object that needs to be added to the catalog
@@ -987,20 +931,4 @@ components:
           schema:
             $ref: '#/components/schemas/Section'
       required: true
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: http://petstore.swagger.io/oauth/dialog
-          scopes:
-            write:pets: modify pets in your account
-            read:pets: read your pets
-      x-tokenInfoFunc: swagger_server.controllers.authorization_controller.check_petstore_auth
-      x-scopeValidateFunc: swagger_server.controllers.authorization_controller.validate_scope_petstore_auth
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
-      x-apikeyInfoFunc: swagger_server.controllers.authorization_controller.check_api_key
 

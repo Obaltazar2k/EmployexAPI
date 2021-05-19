@@ -6,7 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-from swagger_server.models.aptitude import Aptitude  # noqa: F401,E501
 from swagger_server.models.certification import Certification  # noqa: F401,E501
 from swagger_server.models.education import Education  # noqa: F401,E501
 from swagger_server.models.laboral_experience import LaboralExperience  # noqa: F401,E501
@@ -20,7 +19,7 @@ class IndependientUser(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, surnames: str=None, name: str=None, ocupation: str=None, persoanl_description: str=None, aptitude: List[Aptitude]=None, user: User=None, education: List[Education]=None, laboral_experience: List[LaboralExperience]=None, certification: List[Certification]=None, section: List[Section]=None):  # noqa: E501
+    def __init__(self, surnames: str=None, name: str=None, ocupation: str=None, persoanl_description: str=None, user: User=None, education: List[Education]=None, laboral_experience: List[LaboralExperience]=None, certification: List[Certification]=None, section: List[Section]=None):  # noqa: E501
         """IndependientUser - a model defined in Swagger
 
         :param surnames: The surnames of this IndependientUser.  # noqa: E501
@@ -31,8 +30,6 @@ class IndependientUser(Model):
         :type ocupation: str
         :param persoanl_description: The persoanl_description of this IndependientUser.  # noqa: E501
         :type persoanl_description: str
-        :param aptitude: The aptitude of this IndependientUser.  # noqa: E501
-        :type aptitude: List[Aptitude]
         :param user: The user of this IndependientUser.  # noqa: E501
         :type user: User
         :param education: The education of this IndependientUser.  # noqa: E501
@@ -49,7 +46,6 @@ class IndependientUser(Model):
             'name': str,
             'ocupation': str,
             'persoanl_description': str,
-            'aptitude': List[Aptitude],
             'user': User,
             'education': List[Education],
             'laboral_experience': List[LaboralExperience],
@@ -62,7 +58,6 @@ class IndependientUser(Model):
             'name': 'name',
             'ocupation': 'ocupation',
             'persoanl_description': 'persoanl_description',
-            'aptitude': 'aptitude',
             'user': 'user',
             'education': 'education',
             'laboral_experience': 'laboral_experience',
@@ -73,7 +68,6 @@ class IndependientUser(Model):
         self._name = name
         self._ocupation = ocupation
         self._persoanl_description = persoanl_description
-        self._aptitude = aptitude
         self._user = user
         self._education = education
         self._laboral_experience = laboral_experience
@@ -184,29 +178,6 @@ class IndependientUser(Model):
         """
 
         self._persoanl_description = persoanl_description
-
-    @property
-    def aptitude(self) -> List[Aptitude]:
-        """Gets the aptitude of this IndependientUser.
-
-        Aptitudes selected by the user, 5 maximum  # noqa: E501
-
-        :return: The aptitude of this IndependientUser.
-        :rtype: List[Aptitude]
-        """
-        return self._aptitude
-
-    @aptitude.setter
-    def aptitude(self, aptitude: List[Aptitude]):
-        """Sets the aptitude of this IndependientUser.
-
-        Aptitudes selected by the user, 5 maximum  # noqa: E501
-
-        :param aptitude: The aptitude of this IndependientUser.
-        :type aptitude: List[Aptitude]
-        """
-
-        self._aptitude = aptitude
 
     @property
     def user(self) -> User:

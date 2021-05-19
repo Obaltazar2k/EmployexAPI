@@ -3,10 +3,7 @@
 # flake8: noqa
 from __future__ import absolute_import
 # import models into model package
-from swagger_server.models.api_response import ApiResponse
 from swagger_server.models.aplication import Aplication
-from swagger_server.models.aptitude import Aptitude
-from swagger_server.models.body import Body
 from swagger_server.models.certification import Certification
 from swagger_server.models.education import Education
 from swagger_server.models.independient_user import IndependientUser
@@ -17,5 +14,4 @@ from swagger_server.models.media import Media
 from swagger_server.models.organization_user import OrganizationUser
 from swagger_server.models.section import Section
 from swagger_server.models.sector import Sector
-from swagger_server.models.tag import Tag
 from swagger_server.models.user import User

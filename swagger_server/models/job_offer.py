@@ -8,7 +8,6 @@ from typing import List, Dict  # noqa: F401
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.job_category import JobCategory  # noqa: F401,E501
 from swagger_server.models.media import Media  # noqa: F401,E501
-from swagger_server.models.tag import Tag  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -17,7 +16,7 @@ class JobOffer(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, job_offer_id: str=None, job: str=None, description: str=None, job_category: JobCategory=None, location: str=None, tags: List[Tag]=None, media: List[Media]=None):  # noqa: E501
+    def __init__(self, job_offer_id: str=None, job: str=None, description: str=None, job_category: JobCategory=None, location: str=None, media: List[Media]=None):  # noqa: E501
         """JobOffer - a model defined in Swagger
 
         :param job_offer_id: The job_offer_id of this JobOffer.  # noqa: E501
@@ -30,8 +29,6 @@ class JobOffer(Model):
         :type job_category: JobCategory
         :param location: The location of this JobOffer.  # noqa: E501
         :type location: str
-        :param tags: The tags of this JobOffer.  # noqa: E501
-        :type tags: List[Tag]
         :param media: The media of this JobOffer.  # noqa: E501
         :type media: List[Media]
         """
@@ -41,7 +38,6 @@ class JobOffer(Model):
             'description': str,
             'job_category': JobCategory,
             'location': str,
-            'tags': List[Tag],
             'media': List[Media]
         }
 
@@ -51,7 +47,6 @@ class JobOffer(Model):
             'description': 'description',
             'job_category': 'job_category',
             'location': 'location',
-            'tags': 'tags',
             'media': 'media'
         }
         self._job_offer_id = job_offer_id
@@ -59,7 +54,6 @@ class JobOffer(Model):
         self._description = description
         self._job_category = job_category
         self._location = location
-        self._tags = tags
         self._media = media
 
     @classmethod
@@ -189,29 +183,6 @@ class JobOffer(Model):
         """
 
         self._location = location
-
-    @property
-    def tags(self) -> List[Tag]:
-        """Gets the tags of this JobOffer.
-
-        Differents tags associated to the job offer  # noqa: E501
-
-        :return: The tags of this JobOffer.
-        :rtype: List[Tag]
-        """
-        return self._tags
-
-    @tags.setter
-    def tags(self, tags: List[Tag]):
-        """Sets the tags of this JobOffer.
-
-        Differents tags associated to the job offer  # noqa: E501
-
-        :param tags: The tags of this JobOffer.
-        :type tags: List[Tag]
-        """
-
-        self._tags = tags
 
     @property
     def media(self) -> List[Media]:
