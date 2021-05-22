@@ -11,7 +11,12 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/ricardorzan/Employex/1.0.0
   description: SwaggerHub API Auto Mocking
+- url: https://virtserver.swaggerhub.com/Employex/1.0.0
+  description: SwaggerHub API Auto Mocking
 - url: https://employex.swagger.io/v2
+security:
+- oAuthSample:
+  - uid
 tags:
 - name: general_user
   description: Operations about general user
@@ -385,7 +390,7 @@ components:
           format: uuid
       description: Aplication in a job offer from an independient user
       example:
-        date: 2000-01-23
+        date: 2000-01-23T00:00:00.000Z
         independient_user_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         job_offer_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         aproved: false
@@ -419,9 +424,9 @@ components:
       description: Main structure of a certification object
       example:
         credential_url: credential_url
-        expedition_date: 2000-01-23
+        expedition_date: 2000-01-23T00:00:00.000Z
         issuing_company: issuing_company
-        expiration_date: 2000-01-23
+        expiration_date: 2000-01-23T00:00:00.000Z
         title: title
         credential_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
     Education:
@@ -460,14 +465,14 @@ components:
           description: University where the education was taken
       description: Main structure of a education object
       example:
-        end_date: 2000-01-23
+        end_date: 2000-01-23T00:00:00.000Z
         average: 0.8008282
         university: university
         education_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         description: description
         discipline: discipline
         title: title
-        start_date: 2000-01-23
+        start_date: 2000-01-23T00:00:00.000Z
     IndependientUser:
       required:
       - name
@@ -512,22 +517,22 @@ components:
         persoanl_description: persoanl_description
         ocupation: ocupation
         education:
-        - end_date: 2000-01-23
+        - end_date: 2000-01-23T00:00:00.000Z
           average: 0.8008282
           university: university
           education_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           discipline: discipline
           title: title
-          start_date: 2000-01-23
-        - end_date: 2000-01-23
+          start_date: 2000-01-23T00:00:00.000Z
+        - end_date: 2000-01-23T00:00:00.000Z
           average: 0.8008282
           university: university
           education_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           discipline: discipline
           title: title
-          start_date: 2000-01-23
+          start_date: 2000-01-23T00:00:00.000Z
         name: name
         section:
         - section_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -548,7 +553,7 @@ components:
           title: title
         surnames: surnames
         laboral_experience:
-        - end_date: 2000-01-23
+        - end_date: 2000-01-23T00:00:00.000Z
           laboral_experience_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           company_name: company_name
           location: location
@@ -556,8 +561,8 @@ components:
           job_title: job_title
           sector: "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
           job_category: CARPINTERO
-          start_date: 2000-01-23
-        - end_date: 2000-01-23
+          start_date: 2000-01-23T00:00:00.000Z
+        - end_date: 2000-01-23T00:00:00.000Z
           laboral_experience_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           company_name: company_name
           location: location
@@ -565,7 +570,7 @@ components:
           job_title: job_title
           sector: "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
           job_category: CARPINTERO
-          start_date: 2000-01-23
+          start_date: 2000-01-23T00:00:00.000Z
         user:
           country: country
           user_status: active
@@ -578,15 +583,15 @@ components:
           email: example@gmail.com
         certification:
         - credential_url: credential_url
-          expedition_date: 2000-01-23
+          expedition_date: 2000-01-23T00:00:00.000Z
           issuing_company: issuing_company
-          expiration_date: 2000-01-23
+          expiration_date: 2000-01-23T00:00:00.000Z
           title: title
           credential_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         - credential_url: credential_url
-          expedition_date: 2000-01-23
+          expedition_date: 2000-01-23T00:00:00.000Z
           issuing_company: issuing_company
-          expiration_date: 2000-01-23
+          expiration_date: 2000-01-23T00:00:00.000Z
           title: title
           credential_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
     JobOffer:
@@ -718,7 +723,7 @@ components:
           description: Location where the work experience was lived
       description: Structure of a laboral experience object
       example:
-        end_date: 2000-01-23
+        end_date: 2000-01-23T00:00:00.000Z
         laboral_experience_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         company_name: company_name
         location: location
@@ -726,7 +731,7 @@ components:
         job_title: job_title
         sector: "AGRICULTURA, PLANTACIONES, U OTROS SECTORES RURALES"
         job_category: CARPINTERO
-        start_date: 2000-01-23
+        start_date: 2000-01-23T00:00:00.000Z
     Media:
       type: object
       properties:
@@ -931,4 +936,15 @@ components:
           schema:
             $ref: '#/components/schemas/Section'
       required: true
+  securitySchemes:
+    oAuthSample:
+      type: oauth2
+      description: "This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)"
+      flows:
+        implicit:
+          authorizationUrl: https://api.example.com/oauth2/authorize
+          scopes:
+            uid: Unique identifier of the user accessing the service.
+      x-tokenInfoFunc: swagger_server.controllers.authorization_controller.check_oAuthSample
+      x-scopeValidateFunc: swagger_server.controllers.authorization_controller.validate_scope_oAuthSample
 

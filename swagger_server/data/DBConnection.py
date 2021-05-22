@@ -8,7 +8,7 @@ class DBConnection:
         self.password = "gatodeportivo"
         self.database = "Employex"
         self.host = "localhost"
-        self.connection = None
+        #self.connection = None
 
     def connect(self):
         self.connection = mysql.connector.connect(
