@@ -8,10 +8,8 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
 from swagger_server.models.user import User
-from swagger_server.controllers.auth import Auth
-from swagger_server.models.responses_rest import ResponsesREST
 from swagger_server.data.DBConnection import DBConnection
-from swagger_server.data.extensions import jwt
+from http import HTTPStatus
 
 login = Blueprint('Login_user', __name__)
 
@@ -28,7 +26,7 @@ def login_user(username, password):  # noqa: E501
 
     :rtype: str
     """
-    response = Response(status=ResponsesREST.INVALID_INPUT.value)
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
     account_login = User()
     account_login.username = username
     account_login.password = password
@@ -38,9 +36,9 @@ def login_user(username, password):  # noqa: E501
     list_accounts = connection.select(query, param)
     if list_accounts:
         acces_token = create_access_token(identity=username)
-        response = Response(json.dumps(acces_token), status=ResponsesREST.SUCCESSFUL.value, mimetype="application/json")
+        response = Response(json.dumps(acces_token), status=HTTPStatus.OK.value, mimetype="application/json")
     else:
-        response = Response(status=ResponsesREST.NOT_AUTHORIZED.value)
+        response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     return response
 
 def logout_user():  # noqa: E501

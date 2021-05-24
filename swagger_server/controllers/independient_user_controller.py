@@ -4,9 +4,9 @@ import six
 
 from flask import Blueprint, request, Response, session
 from swagger_server.models.independient_user import IndependientUser  # noqa: E501
-from swagger_server.models.responses_rest import ResponsesREST
 from swagger_server import util
 from swagger_server.data.DBConnection import DBConnection
+from http import HTTPStatus
 
 
 def get_independint_user_by_id(user_id):  # noqa: E501
@@ -32,7 +32,7 @@ def register_indpendient_user(body):  # noqa: E501
 
     :rtype: None
     """
-    response = Response(status=ResponsesREST.INVALID_INPUT.value)
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
     if connexion.request.is_json:
         body = IndependientUser.from_dict(connexion.request.get_json())  # noqa: E501
         query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
@@ -48,5 +48,5 @@ def register_indpendient_user(body):  # noqa: E501
             query = "INSERT INTO independiente VALUES (%s, 'Perfeccionista',%s, %s, %s, null, %s)"
             param = [body.surnames, body.persoanl_description, body.name, body.ocupation, body.user.email]
             connection.send_query(query, param)
-            response = Response(status=ResponsesREST.SUCCESSFUL.value)
+            response = Response(status=HTTPStatus.OK.value)
     return response
