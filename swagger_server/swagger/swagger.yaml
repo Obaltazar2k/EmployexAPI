@@ -481,13 +481,16 @@ components:
         surnames:
           type: string
           description: User' surnames
+          pattern: '^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$' 
         name:
           type: string
           description: User's name
+          pattern: '^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$' 
         ocupation:
           type: string
           description: Actual job
-        persoanl_description:
+          pattern: '^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$' 
+        personal_description:
           type: string
           description: Short description of the user
         user:
@@ -760,8 +763,8 @@ components:
           type: string
           description: Organization overview
         zip_code:
-          maximum: 5
-          minimum: 5
+          #maximum: 6
+          #minimum: 6
           type: integer
           description: Zip code where the organization is located
           format: int64
@@ -869,7 +872,6 @@ components:
         password:
           maxLength: 100
           minLength: 8
-          pattern: "/^(?=.*?[0-z]).{8,}$/"
           type: string
           description: User's password
           format: password
@@ -877,9 +879,11 @@ components:
         city:
           type: string
           description: City where the user lives
+          pattern: '^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$' 
         country:
           type: string
           description: Country where the user lives
+          pattern: '^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$' 
         user_status:
           type: string
           description: User status

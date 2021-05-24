@@ -5,18 +5,19 @@ from mysql.connector import Error
 class DBConnection:
     def __init__(self):
         self.user = "root"
-        self.password = "gatodeportivo"
-        self.database = "Employex"
+        self.password = "Jinchuriki2k"
+        self.database = "employex"
         self.host = "localhost"
-        #self.connection = None
+        self.connection = None
 
-    def connect(self):
+    def connect(self, include_params: bool = False):
         self.connection = mysql.connector.connect(
             host=self.host,
             database=self.database,
             user=self.user,
             password=self.password
         )
+        return self.connection.cursor(prepared=include_params)
 
     def close_connection(self):
         if self.connection.is_connected():
@@ -26,14 +27,12 @@ class DBConnection:
         executed = False
         if self.host is not None:
             parameters: tuple = ()
-            if values is not None:
-                parameters = tuple(values)
             try:
-                self.connect()
                 if values is not None:
-                    cursor = self.connection.cursor(prepared=True)
+                    cursor = self.connect(True)
+                    parameters = tuple(values)
                 else:
-                    cursor = self.connection.cursor()
+                    cursor = self.connect()
                 cursor.execute(query, parameters)
                 self.connection.commit()
                 executed = True

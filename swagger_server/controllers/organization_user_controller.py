@@ -1,9 +1,11 @@
 import connexion
 import six
 
-from swagger_server.models.independient_user import IndependientUser  # noqa: E501
+from flask import Blueprint, request, Response, session
+from swagger_server.models.responses_rest import ResponsesREST
 from swagger_server.models.organization_user import OrganizationUser  # noqa: E501
 from swagger_server import util
+from swagger_server.data.DBConnection import DBConnection
 
 
 def get_organization_user_by_id(user_id):  # noqa: E501
@@ -29,6 +31,21 @@ def register_organization_user(body):  # noqa: E501
 
     :rtype: None
     """
+    response = Response(status=ResponsesREST.INVALID_INPUT.value)
     if connexion.request.is_json:
         body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
+        param = [body.user.email]
+        connection = DBConnection()
+        list_accounts = connection.select(query, param)
+        if list_accounts:
+            return response
+        else:
+            query = "INSERT INTO Usuario VALUES (%s, %s,%s, null, %s, %s)"
+            param = [body.user.city, body.user.password, body.user.email, body.user.country, body.user.email]
+            connection.send_query(query, param)
+            query = "INSERT INTO organizacion VALUES (%s,%s, %s, %s, %s, %s, %s, %s, null, %s)"
+            param = [body.about, body.zip_code,  body.contact_email, body.name, body.contact_name, body.work_sector, body.web_site, body.contact_phone, body.user.email]
+            connection.send_query(query, param)
+            response = Response(status=ResponsesREST.SUCCESSFUL.value)
+    return response
