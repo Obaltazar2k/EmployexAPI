@@ -2,10 +2,10 @@ import connexion
 import six
 
 from flask import Blueprint, request, Response, session
-from swagger_server.models.responses_rest import ResponsesREST
 from swagger_server.models.organization_user import OrganizationUser  # noqa: E501
 from swagger_server import util
 from swagger_server.data.DBConnection import DBConnection
+from http import HTTPStatus
 
 
 def get_organization_user_by_id(user_id):  # noqa: E501
@@ -31,7 +31,7 @@ def register_organization_user(body):  # noqa: E501
 
     :rtype: None
     """
-    response = Response(status=ResponsesREST.INVALID_INPUT.value)
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
     if connexion.request.is_json:
         body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
         query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
@@ -47,5 +47,5 @@ def register_organization_user(body):  # noqa: E501
             query = "INSERT INTO organizacion VALUES (%s,%s, %s, %s, %s, %s, %s, %s, null, %s)"
             param = [body.about, body.zip_code,  body.contact_email, body.name, body.contact_name, body.work_sector, body.web_site, body.contact_phone, body.user.email]
             connection.send_query(query, param)
-            response = Response(status=ResponsesREST.SUCCESSFUL.value)
+            response = Response(status=HTTPStatus.OK.value)
     return response
