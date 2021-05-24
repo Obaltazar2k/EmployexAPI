@@ -14,9 +14,9 @@ servers:
 - url: https://virtserver.swaggerhub.com/Employex/1.0.0
   description: SwaggerHub API Auto Mocking
 - url: https://employex.swagger.io/v2
-security:
-- oAuthSample:
-  - uid
+#security:
+#- oAuthSample:
+#  - uid
 tags:
 - name: general_user
   description: Operations about general user

@@ -9,6 +9,7 @@ class ResponsesREST(Enum):
     INVALID_INPUT = 400
     # For a repeat object
     INVALID_REQUEST = 409
-    NOT_AUTHORIZED = 403
-    NOT_AUTHENTICATED = 401
+    NOT_FOUNDED = 404
+    NOT_AUTHENTICATED = 403
+    NOT_AUTHORIZED = 401
     TIME_OUT = 419

@@ -1,9 +1,13 @@
+import json
 import connexion
 import six
 
 from swagger_server.models.aplication import Aplication  # noqa: E501
 from swagger_server.models.job_offer import JobOffer  # noqa: E501
 from swagger_server import util
+from flask import Response
+from swagger_server.models.responses_rest import ResponsesREST
+from swagger_server.data.DBConnection import DBConnection
 
 
 def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
@@ -46,8 +50,31 @@ def get_job_offers(page):  # noqa: E501
 
     :rtype: List[JobOffer]
     """
-    return 'do some magic!'
-
+    response = Response(status=ResponsesREST.INVALID_INPUT.value)
+    query = "SELECT ofertadetrabajo.OfertadetrabajoID as job_offer_id,  ofertadetrabajo.Cargo as job, ofertadetrabajo.Descripcion as description, ofertadetrabajo.Tipoempleo as job_category, ofertadetrabajo.Ubicacion as location FROM Ofertadetrabajo LIMIT %s, %s"
+    param = [(page*10)-10, page*10]
+    connection = DBConnection()
+    list_joboffers = connection.select(query, param)
+    job_offer_objects = []
+    for job_offer in list_joboffers:
+        job_offer_aux = JobOffer()
+        job_offer_aux.description = job_offer['description']
+        job_offer_aux.job = job_offer['job']
+        job_offer_aux.job_category = job_offer['job_category']
+        job_offer_aux.job_offer_id = job_offer['job_offer_id']
+        job_offer_aux.location = job_offer['location']
+        job_offer_objects.append(job_offer_aux)
+    if job_offer_objects:
+        job_offer_json = []
+        for job_offer_object in job_offer_objects:
+            job_offer_json.append(JobOffer.to_dict(job_offer_object))
+        for elem in job_offer_json:
+            elem['jobCategory'] = elem.pop('job_category')
+            elem['jobOfferId'] = elem.pop('job_offer_id')
+        response = Response(json.dumps(job_offer_json),status=ResponsesREST.CREATED.value,mimetype="application/json")
+    else:
+        response = Response(status=ResponsesREST.NOT_FOUNDED.value)
+    return response
 
 def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
     """Returns a list of aplications in a specified job offer published by the user
