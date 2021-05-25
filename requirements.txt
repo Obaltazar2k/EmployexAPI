@@ -1,7 +1,8 @@
 connexion == 2.6.0
 python_dateutil == 2.6.0
 setuptools >= 21.0.0
-//cryptography
-//mysql-connector-python
-//flask-jwt-extended
-//pyJWT
+Flask-Limiter
+#cryptography
+#mysql-connector-python
+#flask-jwt-extended
+#pyJWT

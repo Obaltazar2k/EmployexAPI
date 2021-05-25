@@ -6,6 +6,7 @@ from flask import Blueprint, request, Response, session, Flask
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from swagger_server.app import limiter
 
 from swagger_server.models.user import User
 from swagger_server.data.DBConnection import DBConnection
@@ -13,7 +14,8 @@ from http import HTTPStatus
 
 login = Blueprint('Login_user', __name__)
 
-#@jwt_required()
+#@jwt_required() Decorador para solicitar el token de acceso
+#@limiter.limit("1/hour") Decorador para cambiar el limite por defecto de alguna transacción 
 def login_user(username, password):  # noqa: E501
     """Logs user into the system
 
