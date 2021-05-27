@@ -6,3 +6,4 @@ Flask-Limiter
 #mysql-connector-python
 #flask-jwt-extended
 #pyJWT
+pymysql

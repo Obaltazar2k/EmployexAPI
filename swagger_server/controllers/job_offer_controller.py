@@ -1,4 +1,5 @@
 import json
+from typing import final
 import connexion
 import six
 
@@ -7,6 +8,9 @@ from swagger_server import util
 from flask import Response
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
+from flask_jwt_extended import jwt_required
+from swagger_server.data.db import Ofertadetrabajo, database
+from peewee import DoesNotExist
 
 
 def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
@@ -38,7 +42,7 @@ def add_job_offer(body):  # noqa: E501
         body = JobOffer.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
-
+@jwt_required()
 def get_job_offers(page):  # noqa: E501
     """Returns a list of job offers
 
@@ -50,18 +54,21 @@ def get_job_offers(page):  # noqa: E501
     :rtype: List[JobOffer]
     """
     response = Response(status=HTTPStatus.NOT_FOUND.value)
-    query = "SELECT ofertadetrabajo.OfertadetrabajoID as job_offer_id,  ofertadetrabajo.Cargo as job, ofertadetrabajo.Descripcion as description, ofertadetrabajo.Tipoempleo as job_category, ofertadetrabajo.Ubicacion as location FROM Ofertadetrabajo LIMIT %s, %s"
-    param = [(page*10)-10, page*10]
-    connection = DBConnection()
-    list_joboffers = connection.select(query, param)
+    database.connect()
+    try:
+        list_joboffers = Ofertadetrabajo.select().paginate(page, 10)
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()
     job_offer_objects = []
     for job_offer in list_joboffers:
         job_offer_aux = JobOffer()
-        job_offer_aux.description = job_offer['description']
-        job_offer_aux.job = job_offer['job']
-        job_offer_aux.job_category = job_offer['job_category']
-        job_offer_aux.job_offer_id = job_offer['job_offer_id']
-        job_offer_aux.location = job_offer['location']
+        job_offer_aux.description = job_offer.descripcion
+        job_offer_aux.job = job_offer.cargo
+        job_offer_aux.job_category = job_offer.tipoempleo
+        job_offer_aux.job_offer_id = job_offer.ofertadetrabajo_id
+        job_offer_aux.location = job_offer.ubicacion
         job_offer_objects.append(job_offer_aux)
     if job_offer_objects:
         job_offer_json = []
@@ -70,7 +77,7 @@ def get_job_offers(page):  # noqa: E501
         for elem in job_offer_json:
             elem['jobCategory'] = elem.pop('job_category')
             elem['jobOfferId'] = elem.pop('job_offer_id')
-        response = Response(json.dumps(job_offer_json),status=HTTPStatus.CREATED.value,mimetype="application/json")
+        response = Response(json.dumps(job_offer_json),status=HTTPStatus.OK.value,mimetype="application/json")
     else:
         response = Response(status=HTTPStatus.NOT_FOUND.value)
     return response
