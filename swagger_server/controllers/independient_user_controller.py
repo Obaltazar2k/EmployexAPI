@@ -4,6 +4,7 @@ import six
 
 from flask import Blueprint, request, Response, session
 from swagger_server.models.independient_user import IndependientUser  # noqa: E501
+from swagger_server.models.media import Media
 from swagger_server import util
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
@@ -42,11 +43,22 @@ def register_indpendient_user(body):  # noqa: E501
         if list_accounts:
             return response
         else:
-            query = "INSERT INTO Usuario VALUES (%s, %s,%s, null, %s, %s)"
-            param = [body.user.city, body.user.password, body.user.email, body.user.country, body.user.email]
+            '''query = "INSERT INTO Media VALUES (%s, null, null, null, 'obaltazar2000@gmail.com')"
+            param = [body.user.profile_photo.file]
+            connection.send_query(query, param)'''
+            searchMediaQuery = "SELECT MediaID  as media_id, File as file FROM Media WHERE Usuariocorreo = %s"
+            searchFileParam = ['obaltazar2000@gmail.com']
+            retrieveMedia = connection.select(searchMediaQuery, searchFileParam)
+            mediaID = None
+            for retrived in retrieveMedia:
+                mediaID = retrived['media_id']
+
+            print(mediaID)
+            '''query = "INSERT INTO Usuario VALUES (%s, %s,%s, %s, %s, %s)"
+            param = [body.user.city, body.user.password, body.user.email, retrieveMedia[0,1], body.user.country, body.user.email]
             connection.send_query(query, param)
             query = "INSERT INTO independiente VALUES (%s, 'Perfeccionista',%s, %s, %s, null, %s)"
             param = [body.surnames, body.persoanl_description, body.name, body.ocupation, body.user.email]
-            connection.send_query(query, param)
+            connection.send_query(query, param)'''
             response = Response(status=HTTPStatus.OK.value)
     return response
