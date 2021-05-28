@@ -8,6 +8,8 @@ from swagger_server.models.media import Media
 from swagger_server import util
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
+from swagger_server.data.db import Media, Independiente, Usuario, database
+from peewee import DoesNotExist
 
 
 def get_independint_user_by_id(user_id):  # noqa: E501
@@ -33,32 +35,22 @@ def register_indpendient_user(body):  # noqa: E501
 
     :rtype: None
     """
-    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     if connexion.request.is_json:
         body = IndependientUser.from_dict(connexion.request.get_json())  # noqa: E501
-        query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
-        param = [body.user.email]
-        connection = DBConnection()
-        list_accounts = connection.select(query, param)
-        if list_accounts:
-            return response
-        else:
-            '''query = "INSERT INTO Media VALUES (%s, null, null, null, 'obaltazar2000@gmail.com')"
-            param = [body.user.profile_photo.file]
-            connection.send_query(query, param)'''
-            searchMediaQuery = "SELECT MediaID  as media_id, File as file FROM Media WHERE Usuariocorreo = %s"
-            searchFileParam = ['obaltazar2000@gmail.com']
-            retrieveMedia = connection.select(searchMediaQuery, searchFileParam)
-            mediaID = None
-            for retrived in retrieveMedia:
-                mediaID = retrived['media_id']
+        postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
+        pais = body.user.country, usuariocorreo = body.user.email)
 
-            print(mediaID)
-            '''query = "INSERT INTO Usuario VALUES (%s, %s,%s, %s, %s, %s)"
-            param = [body.user.city, body.user.password, body.user.email, retrieveMedia[0,1], body.user.country, body.user.email]
-            connection.send_query(query, param)
-            query = "INSERT INTO independiente VALUES (%s, 'Perfeccionista',%s, %s, %s, null, %s)"
-            param = [body.surnames, body.persoanl_description, body.name, body.ocupation, body.user.email]
-            connection.send_query(query, param)'''
-            response = Response(status=HTTPStatus.OK.value)
+        postedMedia = Media()
+        postedMedia.file = body.user.profile_photo.file
+        postedMedia.usuariocorreo = body.user.email
+        postedMedia.save()
+
+        postedUser.fotoperfil = postedMedia.media_id
+        postedUser.save()
+    
+        Independiente.create(apellidos = body.surnames, aptitud = 'Creatividad', descripcionpersonal = body.persoanl_description,
+        nombre = body.name, ocupacion = body.ocupation, usuariocorreo = body.user.email)
+
+        response = Response(status=HTTPStatus.OK.value)
     return response

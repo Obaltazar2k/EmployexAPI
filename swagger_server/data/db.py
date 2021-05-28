@@ -1,6 +1,6 @@
 from peewee import *
 
-database = MySQLDatabase('Employex', **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'user': 'root', 'password': 'gatodeportivo'})
+database = MySQLDatabase('employex', **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'user': 'root', 'password': 'Jinchuriki2k'})
 
 class UnknownField(object):
     def __init__(self, *_, **__): pass
@@ -105,7 +105,7 @@ class Seccion(BaseModel):
         table_name = 'seccion'
 
 class Media(BaseModel):
-    file = CharField(column_name='File', null=True)
+    file = BigBitField(column_name='File', null=True)
     media_id = AutoField(column_name='MediaID')
     ofertadetrabajo = ForeignKeyField(column_name='OfertadetrabajoID', field='ofertadetrabajo_id', model=Ofertadetrabajo, null=True)
     seccion = ForeignKeyField(column_name='SeccionID', field='seccion_id', model=Seccion, null=True)
