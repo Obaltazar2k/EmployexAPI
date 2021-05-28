@@ -9,7 +9,8 @@ from flask import Response
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from flask_jwt_extended import jwt_required
-from swagger_server.data.db import Ofertadetrabajo, database
+from flask_jwt_extended import get_jwt_identity
+from swagger_server.data.db import Ofertadetrabajo, database, Media
 from peewee import DoesNotExist
 
 
@@ -28,6 +29,7 @@ def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
     return 'do some magic!'
 
 
+@jwt_required()
 def add_job_offer(body):  # noqa: E501
     """Add a new job offer to the catalog
 
@@ -38,9 +40,26 @@ def add_job_offer(body):  # noqa: E501
 
     :rtype: None
     """
+    current_user = get_jwt_identity()
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
     if connexion.request.is_json:
         body = JobOffer.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    database.connect()
+    job_offer = Ofertadetrabajo.create(
+        descripcion=body.description,
+        cargo = body.job,
+        tipoempleo=body.job_category,
+        ubicacion=body.location,
+        Usuariocorreo=current_user)
+    for media in body.media:
+        Media.create(
+            file=media.file,
+            ofertadetrabajo=job_offer
+        )
+    database.close()
+    if job_offer:
+        response = Response(status=HTTPStatus.CREATED.value)
+    return response
 
 @jwt_required()
 def get_job_offers(page):  # noqa: E501
