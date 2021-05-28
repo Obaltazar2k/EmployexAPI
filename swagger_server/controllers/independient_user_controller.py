@@ -38,19 +38,26 @@ def register_indpendient_user(body):  # noqa: E501
     response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     if connexion.request.is_json:
         body = IndependientUser.from_dict(connexion.request.get_json())  # noqa: E501
-        postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
-        pais = body.user.country, usuariocorreo = body.user.email)
+        query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
+        param = [body.user.email]
+        connection = DBConnection()
+        list_accounts = connection.select(query, param)
+        if list_accounts:
+            return response
+        else:
+            postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
+            pais = body.user.country, usuariocorreo = body.user.email)
 
-        postedMedia = Media()
-        postedMedia.file = body.user.profile_photo.file
-        postedMedia.usuariocorreo = body.user.email
-        postedMedia.save()
+            postedMedia = Media()
+            postedMedia.file = body.user.profile_photo.file
+            postedMedia.usuariocorreo = body.user.email
+            postedMedia.save()
 
-        postedUser.fotoperfil = postedMedia.media_id
-        postedUser.save()
-    
-        Independiente.create(apellidos = body.surnames, aptitud = 'Creatividad', descripcionpersonal = body.persoanl_description,
-        nombre = body.name, ocupacion = body.ocupation, usuariocorreo = body.user.email)
+            postedUser.fotoperfil = postedMedia.media_id
+            postedUser.save()
+        
+            Independiente.create(apellidos = body.surnames, aptitud = 'Creatividad', descripcionpersonal = body.persoanl_description,
+            nombre = body.name, ocupacion = body.ocupation, usuariocorreo = body.user.email)
 
-        response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.OK.value)
     return response
