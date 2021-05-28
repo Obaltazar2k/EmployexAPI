@@ -4,6 +4,7 @@ import connexion
 import six
 
 from swagger_server.models.job_offer import JobOffer  # noqa: E501
+from swagger_server.models.media import Media as MediaModels
 from swagger_server import util
 from flask import Response
 from swagger_server.data.DBConnection import DBConnection
@@ -54,8 +55,7 @@ def add_job_offer(body):  # noqa: E501
     for media in body.media:
         Media.create(
             file=media.file,
-            ofertadetrabajo=job_offer
-        )
+            ofertadetrabajo=job_offer)
     database.close()
     if job_offer:
         response = Response(status=HTTPStatus.CREATED.value)
@@ -76,19 +76,30 @@ def get_job_offers(page):  # noqa: E501
     database.connect()
     try:
         list_joboffers = Ofertadetrabajo.select().paginate(page, 10)
+        job_offer_objects = []  
+        for job_offer in list_joboffers:
+            job_offer_aux = JobOffer()
+            job_offer_aux.description = job_offer.descripcion
+            job_offer_aux.job = job_offer.cargo
+            job_offer_aux.job_category = job_offer.tipoempleo
+            job_offer_aux.job_offer_id = job_offer.ofertadetrabajo_id
+            job_offer_aux.location = job_offer.ubicacion
+            print(job_offer_aux.job)
+            list_media = Media.select().where(Media.ofertadetrabajo == job_offer)
+            print(list_media)
+            media_list = []
+            for media in list_media:
+                media_aux = MediaModels()
+                media_aux.media_id = media.media_id
+                print(media.media_id)
+                media_aux.file = media.file
+                media_list.append(media_aux)
+            job_offer_aux.media = media_list
+            job_offer_objects.append(job_offer_aux)
     except DoesNotExist:
         response = Response(status=HTTPStatus.NOT_FOUND.value)
     finally:
         database.close()
-    job_offer_objects = []
-    for job_offer in list_joboffers:
-        job_offer_aux = JobOffer()
-        job_offer_aux.description = job_offer.descripcion
-        job_offer_aux.job = job_offer.cargo
-        job_offer_aux.job_category = job_offer.tipoempleo
-        job_offer_aux.job_offer_id = job_offer.ofertadetrabajo_id
-        job_offer_aux.location = job_offer.ubicacion
-        job_offer_objects.append(job_offer_aux)
     if job_offer_objects:
         job_offer_json = []
         for job_offer_object in job_offer_objects:

@@ -105,7 +105,7 @@ class Seccion(BaseModel):
         table_name = 'seccion'
 
 class Media(BaseModel):
-    file = BigBitField(column_name='File', null=True)
+    file = TextField(column_name='File', null=True)
     media_id = AutoField(column_name='MediaID')
     ofertadetrabajo = ForeignKeyField(column_name='OfertadetrabajoID', field='ofertadetrabajo_id', model=Ofertadetrabajo, null=True)
     seccion = ForeignKeyField(column_name='SeccionID', field='seccion_id', model=Seccion, null=True)
