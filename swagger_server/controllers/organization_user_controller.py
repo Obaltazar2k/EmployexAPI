@@ -6,6 +6,8 @@ from swagger_server.models.organization_user import OrganizationUser  # noqa: E5
 from swagger_server import util
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
+from swagger_server.data.db import Media, Organizacion, Usuario, database
+from peewee import DoesNotExist
 
 
 def get_organization_user_by_id(user_id):  # noqa: E501
@@ -41,11 +43,18 @@ def register_organization_user(body):  # noqa: E501
         if list_accounts:
             return response
         else:
-            query = "INSERT INTO Usuario VALUES (%s, %s,%s, null, %s, %s)"
-            param = [body.user.city, body.user.password, body.user.email, body.user.country, body.user.email]
-            connection.send_query(query, param)
-            query = "INSERT INTO organizacion VALUES (%s,%s, %s, %s, %s, %s, %s, %s, null, %s)"
-            param = [body.about, body.zip_code,  body.contact_email, body.name, body.contact_name, body.work_sector, body.web_site, body.contact_phone, body.user.email]
-            connection.send_query(query, param)
+            postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
+            pais = body.user.country, usuariocorreo = body.user.email)
+
+            postedMedia = Media()
+            postedMedia.file = body.user.profile_photo.file
+            postedMedia.usuariocorreo = body.user.email
+            postedMedia.save()
+
+            postedUser.fotoperfil = postedMedia.media_id
+            postedUser.save()
+
+            Organizacion.create(acercade = body.about, codigopostal = body.zip_code, emailcontacto = body.contact_email, nombre = body.name,
+            nombrecontact = body.contact_name, sector = body.work_sector, sitioweb = body.web_site, telefonocontacto = body.contact_phone, usuariocorreo = body.user.email)
             response = Response(status=HTTPStatus.OK.value)
     return response
