@@ -626,6 +626,9 @@ components:
           description: Multimedia data related to the job offer
           items:
             $ref: '#/components/schemas/Media'
+        username:
+          type: string
+          description: User who pusblish the job offer.
       description: Main structure of a job offer
       example:
         description: description
@@ -642,6 +645,7 @@ components:
           media_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         job: UI/UX designer
         job_category: CARPINTERO
+        username: useremail@gmail.com
     JobCategory:
       type: string
       description: Different's categories of job

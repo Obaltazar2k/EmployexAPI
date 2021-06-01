@@ -11,7 +11,7 @@ from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
-from swagger_server.data.db import Ofertadetrabajo, database, Media
+from swagger_server.data.db import Ofertadetrabajo, Usuario, database, Media
 from peewee import DoesNotExist
 
 
@@ -84,14 +84,12 @@ def get_job_offers(page):  # noqa: E501
             job_offer_aux.job_category = job_offer.tipoempleo
             job_offer_aux.job_offer_id = job_offer.ofertadetrabajo_id
             job_offer_aux.location = job_offer.ubicacion
-            print(job_offer_aux.job)
+            job_offer_aux.username = str(job_offer.usuariocorreo)
             list_media = Media.select().where(Media.ofertadetrabajo == job_offer)
-            print(list_media)
             media_list = []
             for media in list_media:
                 media_aux = MediaModels()
                 media_aux.media_id = media.media_id
-                print(media.media_id)
                 media_aux.file = media.file
                 media_list.append(media_aux)
             job_offer_aux.media = media_list
