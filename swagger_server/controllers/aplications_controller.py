@@ -26,25 +26,6 @@ def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
 
     :rtype: None
     """
-    current_user = get_jwt_identity()
-    print(current_user)
-    response = Response(status=HTTPStatus.NOT_FOUND.value)
-    today = date.today()
-    database.connect()
-    try:
-        aplication = Aplicacion.create(
-            aprobado = False,
-            fecha = today.strftime("%y-%m-%d"),
-            independiente = Usuario.get_by_id(current_user),
-            Ofertadetrabajo = Ofertadetrabajo.get_by_id(job_offer_id)
-        )
-        response = Response(status=HTTPStatus.CREATED.value)
-    except DoesNotExist:
-        response = Response(status=HTTPStatus.NOT_FOUND.value)
-    finally:
-        database.close()
-    return response
-
 
 def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
     """Returns a list of aplications in a specified job offer published by the user
