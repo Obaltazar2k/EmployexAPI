@@ -22,7 +22,6 @@ def add_laboral_experience(body, user_id):  # noqa: E501
     """
     response = Response(status=HTTPStatus.NOT_ACCEPTABLE.value)
     if connexion.request.is_json:
-        print("Hola")
         try:
             body = LaboralExperience.from_dict(connexion.request.get_json())  # noqa: E501
             postedLaboralExperience = Experiencialaboral()

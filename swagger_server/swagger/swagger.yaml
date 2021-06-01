@@ -154,7 +154,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       requestBody:
         $ref: '#/components/requestBodies/Education'
       responses:
