@@ -29,7 +29,6 @@ def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
     """
     return 'do some magic!'
 
-
 @jwt_required()
 def add_job_offer(body):  # noqa: E501
     """Add a new job offer to the catalog
@@ -84,14 +83,11 @@ def get_job_offers(page):  # noqa: E501
             job_offer_aux.job_category = job_offer.tipoempleo
             job_offer_aux.job_offer_id = job_offer.ofertadetrabajo_id
             job_offer_aux.location = job_offer.ubicacion
-            print(job_offer_aux.job)
             list_media = Media.select().where(Media.ofertadetrabajo == job_offer)
-            print(list_media)
             media_list = []
             for media in list_media:
                 media_aux = MediaModels()
                 media_aux.media_id = media.media_id
-                print(media.media_id)
                 media_aux.file = media.file
                 media_list.append(media_aux)
             job_offer_aux.media = media_list
