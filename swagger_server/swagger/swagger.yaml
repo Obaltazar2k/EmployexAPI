@@ -127,7 +127,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: successful operation
@@ -175,7 +175,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       requestBody:
         $ref: '#/components/requestBodies/LaboralExperience'
       responses:
@@ -213,7 +213,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: successful operation
@@ -705,12 +705,12 @@ components:
             of the user
           default: false
         end_date:
-          pattern: "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/"
+          #pattern: "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/"
           type: string
           description: Date where the laboral experience finished
           format: date
         start_date:
-          pattern: "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/"
+          #pattern: "/([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/"
           type: string
           description: Date where the laboral experience started
           format: date
