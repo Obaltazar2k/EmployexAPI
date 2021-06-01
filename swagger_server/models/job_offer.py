@@ -16,7 +16,7 @@ class JobOffer(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, job_offer_id: str=None, job: str=None, description: str=None, job_category: JobCategory=None, location: str=None, media: List[Media]=None):  # noqa: E501
+    def __init__(self, job_offer_id: str=None, job: str=None, description: str=None, job_category: JobCategory=None, location: str=None, media: List[Media]=None, username: str=None):  # noqa: E501
         """JobOffer - a model defined in Swagger
 
         :param job_offer_id: The job_offer_id of this JobOffer.  # noqa: E501
@@ -31,6 +31,8 @@ class JobOffer(Model):
         :type location: str
         :param media: The media of this JobOffer.  # noqa: E501
         :type media: List[Media]
+        :param username: User who publish the JobOffer.  # noqa: E501
+        :type location: str
         """
         self.swagger_types = {
             'job_offer_id': str,
@@ -38,7 +40,8 @@ class JobOffer(Model):
             'description': str,
             'job_category': JobCategory,
             'location': str,
-            'media': List[Media]
+            'media': List[Media],
+            'username': str
         }
 
         self.attribute_map = {
@@ -47,7 +50,8 @@ class JobOffer(Model):
             'description': 'description',
             'job_category': 'job_category',
             'location': 'location',
-            'media': 'media'
+            'media': 'media',
+            'username':'username'
         }
         self._job_offer_id = job_offer_id
         self._job = job
@@ -55,6 +59,7 @@ class JobOffer(Model):
         self._job_category = job_category
         self._location = location
         self._media = media
+        self._username = username
 
     @classmethod
     def from_dict(cls, dikt) -> 'JobOffer':
@@ -206,3 +211,26 @@ class JobOffer(Model):
         """
 
         self._media = media
+
+    @property
+    def username(self) -> str:
+        """Gets the username of this JobOffer.
+
+        User who pusblish the job offer  # noqa: E501
+
+        :return: User who pusblish the job offe
+        :rtype: str
+        """
+        return self._username
+
+    @username.setter
+    def username(self, username: str):
+        """Sets the username of this JobOffer.
+
+        User who pusblish the job offer  # noqa: E501
+
+        :param location: User who pusblish the job offe
+        :type location: str
+        """
+
+        self._username = username
