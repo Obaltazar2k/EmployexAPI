@@ -1,11 +1,10 @@
 from swagger_server.models.user import User
 import connexion
-import six
+import json
 
-from flask import Blueprint, request, Response, session
+from flask import Response
 from swagger_server.models.independient_user import IndependientUser  # noqa: E501
-from swagger_server.models.media import Media
-from swagger_server import util
+from swagger_server.models.media import Media as MediaModels
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from swagger_server.data.db import Media, Independiente, Usuario, database
@@ -22,7 +21,35 @@ def get_independint_user_by_id(user_id):  # noqa: E501
 
     :rtype: IndependientUser
     """
-    return 'do some magic!'
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    database.connect()
+    try:
+        retrieveIndependientUser = Independiente.get(Independiente.usuariocorreo == user_id)
+        independientUser = IndependientUser()
+        independientUser.surnames = retrieveIndependientUser.apellidos
+        independientUser.persoanl_description = retrieveIndependientUser.descripcionpersonal
+        independientUser.name = retrieveIndependientUser.nombre
+        independientUser.ocupation = retrieveIndependientUser.ocupacion
+
+        retrieveGeneralUser = Usuario.get_by_id(retrieveIndependientUser.Usuariocorreo)
+        generalUser = User()
+        generalUser.city = retrieveGeneralUser.ciudad
+        generalUser.email = retrieveGeneralUser.correo
+        generalUser.country = retrieveGeneralUser.pais
+        generalUser.user_id = retrieveGeneralUser.usuariocorreo
+
+        retrievedPerfilPhoto = Media.get_by_id(retrieveGeneralUser.fotoperfil)
+        profilePhoto = MediaModels()
+        profilePhoto.file = retrievedPerfilPhoto.file
+        generalUser.profile_photo = profilePhoto
+        independientUser.user = generalUser
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()
+        independientUser_json = IndependientUser.to_dict(independientUser)
+        response = Response(json.dumps(independientUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
+    return response
 
 
 def register_indpendient_user(body):  # noqa: E501
