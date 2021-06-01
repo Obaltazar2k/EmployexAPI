@@ -182,6 +182,48 @@ paths:
         "405":
           description: Invalid input
       x-openapi-router-controller: swagger_server.controllers.laboral_experience_controller
+  /users/independient_user/{user_id}/certification:
+    post:
+      tags:
+      - certification
+      summary: Adds certification info to an independient user
+      operationId: add_certification
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Certification'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.certification_controller
+  /users/independient_user/{user_id}/section:
+    post:
+      tags:
+      - section
+      summary: Adds section info to an independient user
+      operationId: add_section
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/Section'
+      responses:
+        "405":
+          description: Invalid input
+      x-openapi-router-controller: swagger_server.controllers.section_controller
   /users/organization_user:
     post:
       tags:
