@@ -11,10 +11,11 @@ from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
-from swagger_server.data.db import Ofertadetrabajo, Usuario, database, Media
+from swagger_server.data.db import Independiente, Ofertadetrabajo, Usuario, database, Media, Aplicacion
 from peewee import DoesNotExist
+from datetime import date
 
-
+@jwt_required()
 def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
     """Adds an aplication to a specified job offer
 
@@ -27,8 +28,37 @@ def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
-
+    current_user = get_jwt_identity()
+    if current_user == user_id:
+        response = Response(status=HTTPStatus.NOT_ACCEPTABLE.value)
+    else:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+        database.connect()
+        aplication = None
+        try:
+            aplication = Aplicacion.select().where(
+                Aplicacion.independiente == Independiente.get(Independiente.usuariocorreo == current_user) and
+                Aplicacion.ofertadetrabajo == Ofertadetrabajo.get_by_id(job_offer_id)).get()
+            response = Response(status=HTTPStatus.CONFLICT.value)
+            return response
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)
+        try:
+            if aplication:
+                response = response(status=HTTPStatus.CONFLICT.value)
+            else:
+                aplication = Aplicacion.create(
+                    aprobado = False,
+                    fecha = date.today().strftime("%y-%m-%d"),
+                    independiente = Independiente.get(Independiente.usuariocorreo == current_user),
+                    ofertadetrabajo = Ofertadetrabajo.get_by_id(job_offer_id)
+                )
+                response = Response(status=HTTPStatus.CREATED.value)
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)      
+        finally:
+            database.close()
+    return response
 
 @jwt_required()
 def add_job_offer(body):  # noqa: E501

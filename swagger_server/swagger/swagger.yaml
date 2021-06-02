@@ -353,7 +353,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       - name: job_offer_id
         in: path
         description: Unique identifier of the job offer
