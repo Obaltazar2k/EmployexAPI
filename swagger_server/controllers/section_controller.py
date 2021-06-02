@@ -1,8 +1,10 @@
 import connexion
-import six
 
 from swagger_server.models.section import Section  # noqa: E501
-from swagger_server import util
+from flask import Response
+from http import HTTPStatus
+from swagger_server.data.db import Seccion, Media, Independiente
+from peewee import DoesNotExist
 
 
 def add_section(body, user_id):  # noqa: E501
@@ -17,6 +19,23 @@ def add_section(body, user_id):  # noqa: E501
 
     :rtype: None
     """
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
     if connexion.request.is_json:
-        body = Section.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        try:
+            body = Section.from_dict(connexion.request.get_json())  # noqa: E501
+            postedSection = Seccion()
+            retrievedIndependientUser = Independiente.get(Independiente.usuariocorreo == user_id)
+
+            postedSection.titulo = body.title
+            postedSection.descripcion = body.description
+            postedSection.independiente = retrievedIndependientUser.independiente_id                       
+            postedSection.save()
+
+            for media in body.media:
+                Media.create(
+                    file = media.file,
+                    seccion_id = postedSection.seccion_id)
+            response = Response(status=HTTPStatus.OK.value)
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)
+    return response
