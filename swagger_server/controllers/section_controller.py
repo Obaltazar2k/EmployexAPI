@@ -23,18 +23,21 @@ def add_section(body, user_id):  # noqa: E501
     if connexion.request.is_json:
         try:
             body = Section.from_dict(connexion.request.get_json())  # noqa: E501
-            postedSection = Seccion()
             retrievedIndependientUser = Independiente.get(Independiente.usuariocorreo == user_id)
-
+            
+            '''postedSection = Seccion()
             postedSection.titulo = body.title
             postedSection.descripcion = body.description
             postedSection.independiente = retrievedIndependientUser.independiente_id                       
-            postedSection.save()
+            postedSection.save()'''
+
+            postedSection = Seccion.create(titulo = body.title, descripcion = body.description, independiente = retrievedIndependientUser.independiente_id)
 
             for media in body.media:
                 Media.create(
                     file = media.file,
-                    seccion_id = postedSection.seccion_id)
+                    seccion = postedSection.seccion_id,
+                    usuariocorreo = user_id)
             response = Response(status=HTTPStatus.OK.value)
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)
