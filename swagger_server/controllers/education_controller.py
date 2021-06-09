@@ -1,8 +1,10 @@
 import connexion
-import six
 
 from swagger_server.models.education import Education  # noqa: E501
-from swagger_server import util
+from flask import Response
+from http import HTTPStatus
+from swagger_server.data.db import Educacion, Independiente
+from peewee import DoesNotExist
 
 
 def add_education(body, user_id):  # noqa: E501
@@ -17,6 +19,24 @@ def add_education(body, user_id):  # noqa: E501
 
     :rtype: None
     """
-    if connexion.request.is_json:
-        body = Education.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    response = Response(status=HTTPStatus.NOT_ACCEPTABLE.value)
+    if connexion.request.is_json:       
+        try:
+            body = Education.from_dict(connexion.request.get_json())  # noqa: E501
+            postedEducation = Educacion()
+            retrievedIndependientUser = Independiente.get(Independiente.usuariocorreo == user_id)
+
+            postedEducation.titulo = body.title
+            postedEducation.universidad = body.university
+            postedEducation.promedio = body.average
+            postedEducation.disciplina = body.discipline
+            postedEducation.descripcion = body.description            
+            postedEducation.independiente = retrievedIndependientUser.independiente_id
+            postedEducation.fechainicio = body.start_date
+            postedEducation.fechafin = body.end_date
+            
+            postedEducation.save()
+            response = Response(status=HTTPStatus.OK.value)
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)
+    return response
