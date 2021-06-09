@@ -37,9 +37,10 @@ def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
         aplication = None
         try:
             aplication = Aplicacion.select().where(
-                Aplicacion.independiente == Independiente.get(Independiente.usuariocorreo == current_user) and
+                Aplicacion.independiente == Independiente.get(Independiente.usuariocorreo == current_user)).where(
                 Aplicacion.ofertadetrabajo == Ofertadetrabajo.get_by_id(job_offer_id)).get()
             response = Response(status=HTTPStatus.CONFLICT.value)
+            print(aplication)
             return response
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)
@@ -165,4 +166,41 @@ def get_job_offers_published_by_the_user(user_id):  # noqa: E501
 
     :rtype: List[JobOffer]
     """
-    return 'do some magic!'
+    current_user = get_jwt_identity()
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    database.connect()
+    try:
+        list_joboffers = Ofertadetrabajo.select().where(Ofertadetrabajo.usuariocorreo == current_user)
+        job_offer_objects = []  
+        for job_offer in list_joboffers:
+            job_offer_aux = JobOffer()
+            job_offer_aux.description = job_offer.descripcion
+            job_offer_aux.job = job_offer.cargo
+            job_offer_aux.job_category = job_offer.tipoempleo
+            job_offer_aux.job_offer_id = job_offer.ofertadetrabajo_id
+            job_offer_aux.location = job_offer.ubicacion
+            job_offer_aux.username = str(job_offer.usuariocorreo)
+            list_media = Media.select().where(Media.ofertadetrabajo == job_offer)
+            media_list = []
+            for media in list_media:
+                media_aux = MediaModels()
+                media_aux.media_id = media.media_id
+                media_aux.file = media.file
+                media_list.append(media_aux)
+            job_offer_aux.media = media_list
+            job_offer_objects.append(job_offer_aux)
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()
+    if job_offer_objects:
+        job_offer_json = []
+        for job_offer_object in job_offer_objects:
+            job_offer_json.append(JobOffer.to_dict(job_offer_object))
+        for elem in job_offer_json:
+            elem['jobCategory'] = elem.pop('job_category')
+            elem['jobOfferId'] = elem.pop('job_offer_id')
+        response = Response(json.dumps(job_offer_json),status=HTTPStatus.OK.value,mimetype="application/json")
+    else:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    return response
