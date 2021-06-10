@@ -119,12 +119,13 @@ def get_independint_user_by_id(user_id):  # noqa: E501
                     section_aux.media = media_list
                 section_list.append(section_aux)
             independientUser.section = section_list
+
+        independientUser_json = IndependientUser.to_dict(independientUser)
+        response = Response(json.dumps(independientUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
     except DoesNotExist:
         response = Response(status=HTTPStatus.NOT_FOUND.value)
     finally:
-        database.close()
-        independientUser_json = IndependientUser.to_dict(independientUser)
-        response = Response(json.dumps(independientUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
+        database.close()      
     return response
 
 @jwt_required()

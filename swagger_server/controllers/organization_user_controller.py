@@ -47,12 +47,13 @@ def get_organization_user_by_id(user_id):  # noqa: E501
         profilePhoto.file = retrievedPerfilPhoto.file
         generalUser.profile_photo = profilePhoto
         organizationUser.user = generalUser
+
+        organizationUser_json = OrganizationUser.to_dict(organizationUser)
+        response = Response(json.dumps(organizationUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
     except DoesNotExist:
         response = Response(status=HTTPStatus.NOT_FOUND.value)
     finally:
-        database.close()
-        organizationUser_json = OrganizationUser.to_dict(organizationUser)
-        response = Response(json.dumps(organizationUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
+        database.close()      
     return response
 
 
