@@ -1,9 +1,9 @@
-from swagger_server.models.user import User
 import connexion
 import json
 
 from flask import Response
 from swagger_server.models.independient_user import IndependientUser  # noqa: E501
+from swagger_server.models.user import User
 from swagger_server.models.media import Media as MediaModels
 from swagger_server.models.laboral_experience import LaboralExperience
 from swagger_server.models.education import Education
@@ -14,7 +14,6 @@ from http import HTTPStatus
 from flask_jwt_extended import jwt_required
 from swagger_server.data.db import Media, Independiente, Usuario, Experiencialaboral, Educacion, Seccion, Certificacion,database
 from peewee import DoesNotExist
-from datetime import date
 
 @jwt_required()
 def get_independint_user_by_id(user_id):  # noqa: E501
@@ -120,12 +119,13 @@ def get_independint_user_by_id(user_id):  # noqa: E501
                     section_aux.media = media_list
                 section_list.append(section_aux)
             independientUser.section = section_list
+
+        independientUser_json = IndependientUser.to_dict(independientUser)
+        response = Response(json.dumps(independientUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
     except DoesNotExist:
         response = Response(status=HTTPStatus.NOT_FOUND.value)
     finally:
-        database.close()
-        independientUser_json = IndependientUser.to_dict(independientUser)
-        response = Response(json.dumps(independientUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
+        database.close()      
     return response
 
 @jwt_required()

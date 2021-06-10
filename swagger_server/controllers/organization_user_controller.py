@@ -1,9 +1,10 @@
 import connexion
-import six
+import json
 
-from flask import Blueprint, request, Response, session
+from flask import Response
 from swagger_server.models.organization_user import OrganizationUser  # noqa: E501
-from swagger_server import util
+from swagger_server.models.user import User
+from swagger_server.models.media import Media as MediaModels
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from swagger_server.data.db import Media, Organizacion, Usuario, database
@@ -20,7 +21,40 @@ def get_organization_user_by_id(user_id):  # noqa: E501
 
     :rtype: IndependientUser
     """
-    return 'do some magic!'
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    database.connect()
+    try:
+        retrieveOrganizationtUser = Organizacion.get(Organizacion.usuariocorreo == user_id)
+        organizationUser = OrganizationUser()
+        organizationUser.name = retrieveOrganizationtUser.nombre
+        organizationUser.work_sector = retrieveOrganizationtUser.sector
+        organizationUser.web_site = retrieveOrganizationtUser.sitioweb
+        organizationUser.contact_name = retrieveOrganizationtUser.nombrecontact
+        organizationUser.contact_email = retrieveOrganizationtUser.emailcontacto
+        organizationUser.contact_phone = retrieveOrganizationtUser.telefonocontacto
+        organizationUser.about = retrieveOrganizationtUser.acercade
+        organizationUser.zip_code = retrieveOrganizationtUser.codigopostal
+
+        retrieveGeneralUser = Usuario.get_by_id(retrieveOrganizationtUser.Usuariocorreo)
+        generalUser = User()
+        generalUser.city = retrieveGeneralUser.ciudad
+        generalUser.email = retrieveGeneralUser.correo
+        generalUser.country = retrieveGeneralUser.pais
+        generalUser.user_id = retrieveGeneralUser.usuariocorreo
+
+        retrievedPerfilPhoto = Media.get_by_id(retrieveGeneralUser.fotoperfil)
+        profilePhoto = MediaModels()
+        profilePhoto.file = retrievedPerfilPhoto.file
+        generalUser.profile_photo = profilePhoto
+        organizationUser.user = generalUser
+
+        organizationUser_json = OrganizationUser.to_dict(organizationUser)
+        response = Response(json.dumps(organizationUser_json),status=HTTPStatus.OK.value,mimetype="application/json")
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()      
+    return response
 
 
 def register_organization_user(body):  # noqa: E501
