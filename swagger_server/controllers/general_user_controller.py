@@ -13,7 +13,7 @@ from peewee import DoesNotExist
 from swagger_server.models.user import User
 from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
-from swagger_server.data.db import Usuario, database
+from swagger_server.data.db import Independiente, Usuario, database
 
 login = Blueprint('Login_user', __name__)
 
@@ -37,7 +37,11 @@ def login_user(username, password):  # noqa: E501
         user = Usuario.get_by_id(username)
         if (user.contrasenia == password):
             acces_token = create_access_token(identity=username)
-            response = Response(acces_token, status=HTTPStatus.OK.value, mimetype="application/json")
+            try: 
+                independient = Independiente.get(Independiente.usuariocorreo == username)
+                response = Response("IND/" + acces_token, status=HTTPStatus.OK.value, mimetype="application/json")
+            except:
+                response = Response("ORG/" + acces_token, status=HTTPStatus.OK.value, mimetype="application/json")
         else:
             response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     except DoesNotExist:
