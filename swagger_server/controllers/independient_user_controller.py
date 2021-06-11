@@ -1,5 +1,8 @@
 import connexion
 import json
+import requests
+import random
+import string
 
 from flask import Response
 from swagger_server.models.independient_user import IndependientUser  # noqa: E501
@@ -14,6 +17,9 @@ from http import HTTPStatus
 from flask_jwt_extended import jwt_required
 from swagger_server.data.db import Media, Independiente, Usuario, Experiencialaboral, Educacion, Seccion, Certificacion,database
 from peewee import DoesNotExist
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from smtplib import SMTP
 
 @jwt_required()
 def get_independint_user_by_id(user_id):  # noqa: E501
@@ -128,7 +134,6 @@ def get_independint_user_by_id(user_id):  # noqa: E501
         database.close()      
     return response
 
-@jwt_required()
 def register_indpendient_user(body):  # noqa: E501
     """Register independient user
 
@@ -149,8 +154,9 @@ def register_indpendient_user(body):  # noqa: E501
         if list_accounts:
             return response
         else:
+            token = tokenGenerator()
             postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
-            pais = body.user.country, usuariocorreo = body.user.email)
+            pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
 
             postedMedia = Media()
             postedMedia.file = body.user.profile_photo.file
@@ -163,5 +169,41 @@ def register_indpendient_user(body):  # noqa: E501
             Independiente.create(apellidos = body.surnames, aptitud = 'Creatividad', descripcionpersonal = body.persoanl_description,
             nombre = body.name, ocupacion = body.ocupation, usuariocorreo = body.user.email)
 
+            fullname = body.name + " " + body.surnames                      
+            send_validationToken_email(body.user.email, fullname, token)
+
             response = Response(status=HTTPStatus.OK.value)
     return response
+
+'''def send_validationToken_email(userEmail, userName):
+	return requests.post(
+		"https://api.mailgun.net/v3/sandboxe17ae3d14f484f0d8ed709818d484ebb.mailgun.org/messages",
+		auth=("api", "b459a7a1da10092fb8a95fd81e4fa891-90ac0eb7-9d025828"),
+		data={
+            "from": "mailgun@sandboxe17ae3d14f484f0d8ed709818d484ebb.mailgun.org",
+			"to": userEmail,
+			"subject": "Prueba de email",
+			"text": "Bienvenido a Employex " + userName})'''
+
+def send_validationToken_email(userEmail, userName, token):
+    employexEmail = "employexapp@gmail.com"
+    message = MIMEMultipart("plain")
+    message["From"] = "employexapp@gmail.com"
+    message["To"] = userEmail
+    message["Subject"] = "Codigo de verificación Employex"
+    body = "Bienvenido a Employex " + userName + ", su código de verificacion es: " + token
+    body = MIMEText(body)
+    message.attach(body)
+
+    smtp = SMTP("smtp.gmail.com")
+    smtp.starttls()
+    smtp.login(employexEmail, "Jinchuriki2k")
+    smtp.sendmail(employexEmail, userEmail, message.as_string())
+    smtp.quit()
+
+def tokenGenerator():
+    token = ''
+    for x in range (0,3):
+        token = token + random.choice(string.digits)
+        token = token + random.choice(string.ascii_lowercase)
+    return token

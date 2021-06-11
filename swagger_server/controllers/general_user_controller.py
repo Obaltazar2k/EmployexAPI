@@ -59,3 +59,29 @@ def logout_user():  # noqa: E501
     :rtype: None
     """
     return 'do some magic!'
+
+def validate_user(username, token):  # noqa: E501
+    """The user is validated so he can enter in the aplication
+
+     # noqa: E501
+
+    :param username: The user name for vaidation
+    :type username: str
+    :param token: The token for te account validation
+    :type token: str
+
+    :rtype: None
+    """
+    return 'do some magic!'
+
+def generate_new_token(username):  # noqa: E501
+    """The user generates a new validation token
+
+     # noqa: E501
+
+    :param username: The user name who generates the new token
+    :type username: str
+
+    :rtype: None
+    """
+    return 'do some magic!'
