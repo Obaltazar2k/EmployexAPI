@@ -1,6 +1,6 @@
 from peewee import *
 
-database = MySQLDatabase('employex', **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'user': 'root', 'password': 'gatodeportivo'})
+database = MySQLDatabase('employex', **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'user': 'root', 'password': 'Jinchuriki2k'})
 
 class UnknownField(object):
     def __init__(self, *_, **__): pass
@@ -15,6 +15,8 @@ class Usuario(BaseModel):
     correo = CharField(column_name='Correo', null=True)
     fotoperfil = IntegerField(column_name='Fotoperfil', null=True)
     pais = CharField(column_name='Pais', null=True)
+    validationtoken = CharField(column_name='ValidationToken', null=True)
+    validated = IntegerField(column_name='Validated', null=True)
     usuariocorreo = CharField(column_name='Usuariocorreo', primary_key=True)
 
     class Meta:

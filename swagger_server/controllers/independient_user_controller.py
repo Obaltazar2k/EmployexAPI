@@ -14,6 +14,7 @@ from http import HTTPStatus
 from flask_jwt_extended import jwt_required
 from swagger_server.data.db import Media, Independiente, Usuario, Experiencialaboral, Educacion, Seccion, Certificacion,database
 from peewee import DoesNotExist
+from swagger_server.controllers.general_user_controller import send_validationToken_email, tokenGenerator
 
 @jwt_required()
 def get_independint_user_by_id(user_id):  # noqa: E501
@@ -131,7 +132,6 @@ def get_independint_user_by_id(user_id):  # noqa: E501
         database.close()      
     return response
 
-@jwt_required()
 def register_indpendient_user(body):  # noqa: E501
     """Register independient user
 
@@ -152,8 +152,9 @@ def register_indpendient_user(body):  # noqa: E501
         if list_accounts:
             return response
         else:
+            token = tokenGenerator()
             postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
-            pais = body.user.country, usuariocorreo = body.user.email)
+            pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
 
             postedMedia = Media()
             postedMedia.file = body.user.profile_photo.file
@@ -165,6 +166,9 @@ def register_indpendient_user(body):  # noqa: E501
         
             Independiente.create(apellidos = body.surnames, aptitud = 'Creatividad', descripcionpersonal = body.persoanl_description,
             nombre = body.name, ocupacion = body.ocupation, usuariocorreo = body.user.email)
+
+            fullname = body.name + " " + body.surnames                      
+            send_validationToken_email(body.user.email, fullname, token)
 
             response = Response(status=HTTPStatus.OK.value)
     return response

@@ -96,6 +96,60 @@ paths:
         default:
           description: successful operation
       x-openapi-router-controller: swagger_server.controllers.general_user_controller
+  /users/validation:
+    patch:
+      tags:
+      - general_user
+      summary: The user is validated so he can enter in the aplication
+      operationId: validate_user
+      parameters:
+      - name: username
+        in: query
+        description: The user name for vaidation
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: token
+        in: query
+        description: The token for te account validation
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: succesful operation
+      x-openapi-router-controller: swagger_server.controllers.general_user_controller
+  /users/new_token:
+    patch:
+      tags:
+      - general_user
+      summary: The user generates a new validation token
+      operationId: generate_new_token
+      parameters:
+      - name: username
+        in: query
+        description: The user name who generates the new token
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: fullName
+        in: query
+        description: The independient or organization user full name
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: succesful operation
+      x-openapi-router-controller: swagger_server.controllers.general_user_controller
   /users/independient_user:
     post:
       tags:

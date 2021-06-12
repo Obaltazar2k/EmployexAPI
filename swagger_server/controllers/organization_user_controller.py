@@ -9,6 +9,7 @@ from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from swagger_server.data.db import Media, Organizacion, Usuario, database
 from peewee import DoesNotExist
+from swagger_server.controllers.general_user_controller import send_validationToken_email, tokenGenerator
 
 
 def get_organization_user_by_id(user_id):  # noqa: E501
@@ -80,8 +81,9 @@ def register_organization_user(body):  # noqa: E501
         if list_accounts:
             return response
         else:
+            token = tokenGenerator()
             postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
-            pais = body.user.country, usuariocorreo = body.user.email)
+            pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
 
             postedMedia = Media()
             postedMedia.file = body.user.profile_photo.file
@@ -93,5 +95,7 @@ def register_organization_user(body):  # noqa: E501
 
             Organizacion.create(acercade = body.about, codigopostal = body.zip_code, emailcontacto = body.contact_email, nombre = body.name,
             nombrecontact = body.contact_name, sector = body.work_sector, sitioweb = body.web_site, telefonocontacto = body.contact_phone, usuariocorreo = body.user.email)
+            send_validationToken_email(body.user.email, body.name, token)
+
             response = Response(status=HTTPStatus.OK.value)
     return response
