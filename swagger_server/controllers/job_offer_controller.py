@@ -155,7 +155,7 @@ def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
     """
     return 'do some magic!'
 
-
+@jwt_required()
 def get_job_offers_published_by_the_user(user_id):  # noqa: E501
     """Returns a list of job offers published by the user
 
