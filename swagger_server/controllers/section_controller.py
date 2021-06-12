@@ -32,12 +32,14 @@ def add_section(body, user_id):  # noqa: E501
             postedSection.save()'''
 
             postedSection = Seccion.create(titulo = body.title, descripcion = body.description, independiente = retrievedIndependientUser.independiente_id)
-
-            for media in body.media:
-                Media.create(
-                    file = media.file,
-                    seccion = postedSection.seccion_id,
-                    usuariocorreo = user_id)
+            
+            if body.media != None:
+                for media in body.media:
+                    Media.create(
+                        file = media.file,
+                        seccion = postedSection.seccion_id,
+                        usuariocorreo = user_id)
+                        
             response = Response(status=HTTPStatus.OK.value)
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)

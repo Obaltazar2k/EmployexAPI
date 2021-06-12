@@ -788,7 +788,6 @@ components:
       - OTRO
     LaboralExperience:
       required:
-      - current_job
       - job_title
       type: object
       properties:

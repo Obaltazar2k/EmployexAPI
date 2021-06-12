@@ -44,10 +44,13 @@ def get_independint_user_by_id(user_id):  # noqa: E501
         generalUser.country = retrieveGeneralUser.pais
         generalUser.user_id = retrieveGeneralUser.usuariocorreo
 
-        retrievedPerfilPhoto = Media.get_by_id(retrieveGeneralUser.fotoperfil)
-        profilePhoto = MediaModels()
-        profilePhoto.file = retrievedPerfilPhoto.file
-        generalUser.profile_photo = profilePhoto
+        try:
+            retrievedPerfilPhoto = Media.get_by_id(retrieveGeneralUser.fotoperfil)
+            profilePhoto = MediaModels()
+            profilePhoto.file = retrievedPerfilPhoto.file
+            generalUser.profile_photo = profilePhoto
+        except DoesNotExist:
+            generalUser.profile_photo = None
         independientUser.user = generalUser
         
         #Recuperacion de experiencias laborales del usuario
