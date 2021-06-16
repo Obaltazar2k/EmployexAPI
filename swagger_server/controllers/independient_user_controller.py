@@ -172,3 +172,42 @@ def register_indpendient_user(body):  # noqa: E501
 
             response = Response(status=HTTPStatus.OK.value)
     return response
+
+
+@jwt_required()
+def patch_independint_user_by_id(body, user_id):  # noqa: E501
+    """Patch user by id
+
+     # noqa: E501
+
+    :param body: Independient user object to patch
+    :type body: dict | bytes
+    :param user_id: Unique identifier of the user
+    :type user_id: str
+
+    :rtype: None
+    """
+    response = Response(status=HTTPStatus.UNAUTHORIZED.value)
+    database.connect()
+    if connexion.request.is_json:
+        body = IndependientUser.from_dict(connexion.request.get_json())  # noqa: E501
+        try:
+            retrieveIndependientUser = Independiente.get(Independiente.usuariocorreo == user_id)
+            retrieveGeneralUser = Usuario.get_by_id(user_id)
+            retrieveMedia = Media.get((Media.usuariocorreo == user_id) & (Media.seccion.is_null(True)) & (Media.ofertadetrabajo.is_null(True)))
+            retrieveGeneralUser.ciudad = body.user.city
+            retrieveGeneralUser.pais = body.user.country
+            retrieveIndependientUser.nombre = body.name
+            retrieveIndependientUser.apellidos = body.surnames
+            retrieveIndependientUser.ocupacion = body.ocupation
+            retrieveIndependientUser.descripcionpersonal = body.persoanl_description
+            retrieveMedia.file = body.user.profile_photo.file
+            retrieveIndependientUser.save()
+            retrieveGeneralUser.save()
+            retrieveMedia.save()
+            response = Response(status=HTTPStatus.OK.value)
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)
+        finally:
+            database.close()
+    return response
