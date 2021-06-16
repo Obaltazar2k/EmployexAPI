@@ -4,6 +4,7 @@ import connexion
 import six
 
 from swagger_server.models.job_offer import JobOffer  # noqa: E501
+from swagger_server.models.aplication import Aplication  # noqa: E501
 from swagger_server.models.media import Media as MediaModels
 from swagger_server import util
 from flask import Response
@@ -141,6 +142,7 @@ def get_job_offers(page):  # noqa: E501
         response = Response(status=HTTPStatus.NOT_FOUND.value)
     return response
 
+@jwt_required()
 def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
     """Returns a list of aplications in a specified job offer published by the user
 
@@ -153,7 +155,34 @@ def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
 
     :rtype: List[Aplication]
     """
-    return 'do some magic!'
+    current_user = get_jwt_identity()
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    database.connect()
+    try:
+        list_aplications = Aplicacion.select().where(Aplicacion.ofertadetrabajo == job_offer_id)
+        aplication_objects = []
+        for aplication in list_aplications:
+            aplication_aux = Aplication()
+            aplication_aux.aproved = aplication.aprobado
+            aplication_aux.independient_user_id = aplication.independiente.independiente_id
+            aplication_aux._date = aplication.fecha.strftime("%Y-%m-%d")
+            aplication_objects.append(aplication_aux)
+        print(aplication_objects)
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()
+    if aplication_objects:
+        aplication_json = []
+        for aplication_object in aplication_objects:
+            aplication_json.append(Aplication.to_dict(aplication_object))
+        print(aplication_json)
+        for elem in aplication_json:
+            elem['independientUserId'] = elem.pop('independient_user_id')
+        response = Response(json.dumps(aplication_json),status=HTTPStatus.OK.value,mimetype="application/json")
+    else:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    return response
 
 @jwt_required()
 def get_job_offers_published_by_the_user(user_id):  # noqa: E501
