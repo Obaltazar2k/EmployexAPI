@@ -200,6 +200,33 @@ paths:
       security:
       - bearerAuth: []
       x-openapi-router-controller: swagger_server.controllers.independient_user_controller
+    patch:
+      tags:
+      - independient_user
+      summary: Patch user by id
+      operationId: patch_independint_user_by_id
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Independient user object to patch
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndependientUser'
+        required: true
+      responses:
+        default:
+          description: succesful operations.independient_user_controller
+      security:
+      - bearerAuth: []
+      x-openapi-router-controller: swagger_server.controllers.independient_user_controller
   /users/independient_user/{user_id}/education:
     post:
       tags:
@@ -350,6 +377,33 @@ paths:
           description: Access token is missing or invalid
         "404":
           description: User not found
+      security:
+      - bearerAuth: []
+      x-openapi-router-controller: swagger_server.controllers.organization_user_controller
+    patch:
+      tags:
+      - organization_user
+      summary: Patch organization user
+      operationId: patch_organization_user_by_id
+      parameters:
+      - name: user_id
+        in: path
+        description: Unique identifier of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Organization user object to register
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUser'
+        required: true
+      responses:
+        default:
+          description: successful operation
       security:
       - bearerAuth: []
       x-openapi-router-controller: swagger_server.controllers.organization_user_controller

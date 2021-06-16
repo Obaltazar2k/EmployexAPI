@@ -9,9 +9,10 @@ from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from swagger_server.data.db import Media, Organizacion, Usuario, database
 from peewee import DoesNotExist
+from flask_jwt_extended import jwt_required
 from swagger_server.controllers.general_user_controller import send_validationToken_email, tokenGenerator
 
-
+@jwt_required()
 def get_organization_user_by_id(user_id):  # noqa: E501
     """Get user by user id
 
@@ -98,4 +99,46 @@ def register_organization_user(body):  # noqa: E501
             send_validationToken_email(body.user.email, body.name, token)
 
             response = Response(status=HTTPStatus.OK.value)
+    return response
+
+@jwt_required()
+def patch_organization_user_by_id(body, user_id):  # noqa: E501
+    """Patch organization user
+
+     # noqa: E501
+
+    :param body: Organization user object to register
+    :type body: dict | bytes
+    :param user_id: Unique identifier of the user
+    :type user_id: str
+
+    :rtype: None
+    """
+    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    database.connect()
+    if connexion.request.is_json:
+        body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
+        try:
+            retrieveOrganizationUser = Organizacion.get(Organizacion.usuariocorreo == user_id)
+            retrieveGeneralUser = Usuario.get_by_id(user_id)
+            retrieveMedia = Media.get((Media.usuariocorreo == user_id) & (Media.seccion.is_null(True)) & (Media.ofertadetrabajo.is_null(True)))
+            retrieveGeneralUser.ciudad = body.user.city
+            retrieveGeneralUser.pais = body.user.country
+            retrieveOrganizationUser.nombre = body.name
+            retrieveOrganizationUser.acercade = body.about
+            retrieveOrganizationUser.codigopostal = body.zip_code
+            retrieveOrganizationUser.emailcontacto = body.contact_email
+            retrieveOrganizationUser.nombrecontact = body.contact_name
+            retrieveOrganizationUser.sector = body.work_sector
+            retrieveOrganizationUser.sitioweb = body.web_site
+            retrieveOrganizationUser.telefonocontacto = body.contact_phone
+            retrieveMedia.file = body.user.profile_photo.file
+            retrieveOrganizationUser.save()
+            retrieveGeneralUser.save()
+            retrieveMedia.save()
+            response = Response(status=HTTPStatus.OK.value)
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)
+        finally:
+            database.close()
     return response
