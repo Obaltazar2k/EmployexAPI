@@ -16,6 +16,8 @@ services:
     environment:   # Set up mysql database name and password
       MYSQL_ROOT_PASSWORD: gatodeportivo
       MYSQL_DATABASE: employex
+    volumes:
+      - Employex_script.sql:/docker-entrypoint-initdb.d/Employex_script.sql
 
   python_app:
     build:
@@ -25,7 +27,3 @@ services:
       - "8080:8080"
     depends_on:
       - mysql_db
-    command:
-      tail -f /dev/null
-    expose:
-      - "8080"
