@@ -21,7 +21,10 @@ services:
     image: python:latest
     ports:
       - "8080:8080"
-    depends_on:
-      - mysql_db
-    command:
-      tail -f /dev/null
+    volumes:
+      - type: bind
+        source: .
+        target: /scripts
+    command: tail -f /dev/null
+    links:
+      - 'mysql_db'
