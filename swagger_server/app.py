@@ -15,8 +15,8 @@ def create_app():
     app = connexion.FlaskApp(__name__, specification_dir='./swagger/')
     #app = Flask(__name__)
 
-    app.app.secret_key = 'Blah!'
-    app.app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)  
+    app.app.config.from_object("config.DevelopmentConfig")
+ 
     #app.config['JWT_BLACKLIST_ENABLED'] = True
     #app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access']
     jwt.init_app(app.app)
