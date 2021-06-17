@@ -29,3 +29,6 @@ services:
       - mysql_db
     command:
       tail -f /dev/null
+
+volumes:
+  db_data:{}
