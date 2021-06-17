@@ -9,7 +9,6 @@ from swagger_server.models.laboral_experience import LaboralExperience
 from swagger_server.models.education import Education
 from swagger_server.models.section import Section
 from swagger_server.models.certification import Certification
-from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from flask_jwt_extended import jwt_required
 from swagger_server.data.db import Media, Independiente, Usuario, Experiencialaboral, Educacion, Seccion, Certificacion,database

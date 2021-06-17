@@ -11,7 +11,6 @@ from flask_jwt_extended import jwt_required
 from swagger_server.app import limiter
 from peewee import DoesNotExist
 from swagger_server.models.user import User
-from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from swagger_server.data.db import Independiente, Usuario, Organizacion, database
 from email.mime.multipart import MIMEMultipart

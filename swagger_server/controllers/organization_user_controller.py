@@ -5,7 +5,6 @@ from flask import Response
 from swagger_server.models.organization_user import OrganizationUser  # noqa: E501
 from swagger_server.models.user import User
 from swagger_server.models.media import Media as MediaModels
-from swagger_server.data.DBConnection import DBConnection
 from http import HTTPStatus
 from swagger_server.data.db import Media, Organizacion, Usuario, database
 from peewee import DoesNotExist
