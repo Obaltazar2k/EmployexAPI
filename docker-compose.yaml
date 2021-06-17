@@ -27,3 +27,5 @@ services:
       - mysql_db
     command:
       tail -f /dev/null
+    expose:
+      - "8080"
