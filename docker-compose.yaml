@@ -18,13 +18,10 @@ services:
       MYSQL_DATABASE: employex
 
   python_app:
-    image: python:latest
+    build: .
     ports:
       - "8080:8080"
-    volumes:
-      - type: 'bind'
-        source: .
-        target: /scripts
-    command: tail -f /dev/null
-    links:
-      - 'mysql_db'
+    depends_on:
+      - mysql_db
+    command:
+      tail -f /dev/null
