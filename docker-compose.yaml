@@ -22,7 +22,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - type: bind
+      - type: 'bind'
         source: .
         target: /scripts
     command: tail -f /dev/null
