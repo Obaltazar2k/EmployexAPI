@@ -52,6 +52,7 @@ class Aplicacion(BaseModel):
     fecha = DateField(column_name='Fecha', null=True)
     independiente = ForeignKeyField(column_name='IndependienteID', field='independiente_id', model=Independiente, null=True)
     ofertadetrabajo = ForeignKeyField(column_name='OfertadetrabajoID', field='ofertadetrabajo_id', model=Ofertadetrabajo, null=True)
+    usuariocorreo = CharField(column_name='Usuariocorreo')
 
     class Meta:
         table_name = 'aplicacion'
