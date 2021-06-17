@@ -16,7 +16,9 @@ services:
     environment:   # Set up mysql database name and password
       MYSQL_ROOT_PASSWORD: gatodeportivo
       MYSQL_DATABASE: employex
-
+    ports:
+      - "3306:3306"
+      
   python_app:
     build: .
     ports:
