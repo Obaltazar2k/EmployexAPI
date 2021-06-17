@@ -16,8 +16,6 @@ services:
     environment:   # Set up mysql database name and password
       MYSQL_ROOT_PASSWORD: gatodeportivo
       MYSQL_DATABASE: employex
-    networks:
-      - app-tier
 
   python_app:
     build:
@@ -27,12 +25,5 @@ services:
       - "8080:8080"
     depends_on:
       - mysql_db
-    networks:
-      - app-tier
     command:
       tail -f /dev/null
-
-
-networks:
-  app-tier:
-    driver: bridge
