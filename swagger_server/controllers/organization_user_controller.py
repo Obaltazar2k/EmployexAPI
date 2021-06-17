@@ -72,14 +72,11 @@ def register_organization_user(body):  # noqa: E501
 
     :rtype: None
     """
-    response = Response(status=HTTPStatus.NOT_FOUND.value)
+    response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     if connexion.request.is_json:
         body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
-        query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
-        param = [body.user.email]
-        connection = DBConnection()
-        list_accounts = connection.select(query, param)
-        if list_accounts:
+        list_accounts = OrganizationUser.select().where(OrganizationUser.usuariocorreo == body.user.email)
+        if list_accounts.exists():
             return response
         else:
             token = tokenGenerator()
