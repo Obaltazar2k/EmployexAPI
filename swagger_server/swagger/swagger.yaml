@@ -592,6 +592,10 @@ components:
           type: number
           description: Job offer's id
           format: int32
+        user_id:
+          type: string
+          format: string
+          description: User's id
       description: Aplication in a job offer from an independient user
       example:
         date: 2000-01-23

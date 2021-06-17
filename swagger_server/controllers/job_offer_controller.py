@@ -53,7 +53,8 @@ def add_aplication_to_job_offer(user_id, job_offer_id):  # noqa: E501
                     aprobado = False,
                     fecha = date.today().strftime("%y-%m-%d"),
                     independiente = Independiente.get(Independiente.usuariocorreo == current_user),
-                    ofertadetrabajo = Ofertadetrabajo.get_by_id(job_offer_id)
+                    ofertadetrabajo = Ofertadetrabajo.get_by_id(job_offer_id),
+                    usuariocorreo = current_user
                 )
                 response = Response(status=HTTPStatus.CREATED.value)
         except DoesNotExist:
@@ -165,7 +166,8 @@ def get_job_offers_aplications(user_id, job_offer_id):  # noqa: E501
             aplication_aux = Aplication()
             aplication_aux.aproved = aplication.aprobado
             aplication_aux.independient_user_id = aplication.independiente.independiente_id
-            aplication_aux._date = aplication.fecha.strftime("%Y-%m-%d")
+            aplication_aux.date = aplication.fecha.strftime("%Y-%m-%d")
+            aplication_aux.user_id = aplication.usuariocorreo
             aplication_objects.append(aplication_aux)
         print(aplication_objects)
     except DoesNotExist:
