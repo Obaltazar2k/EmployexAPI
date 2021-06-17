@@ -16,8 +16,6 @@ services:
     environment:   # Set up mysql database name and password
       MYSQL_ROOT_PASSWORD: gatodeportivo
       MYSQL_DATABASE: employex
-      MYSQL_USER: root
-      MYSQL_PASSWORD: gatodeportivo
     networks:
       - app-tier
 
