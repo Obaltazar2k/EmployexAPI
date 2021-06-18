@@ -74,7 +74,7 @@ def register_organization_user(body):  # noqa: E501
     response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     if connexion.request.is_json:
         body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
-        list_accounts = OrganizationUser.select().where(OrganizationUser.usuariocorreo == body.user.email)
+        list_accounts = Organizacion.select().where(OrganizationUser.usuariocorreo == body.user.email)
         if list_accounts.exists():
             return response
         else:
@@ -94,7 +94,7 @@ def register_organization_user(body):  # noqa: E501
             nombrecontact = body.contact_name, sector = body.work_sector, sitioweb = body.web_site, telefonocontacto = body.contact_phone, usuariocorreo = body.user.email)
             send_validationToken_email(body.user.email, body.name, token)
 
-            response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.CREATED.value)
     return response
 
 @jwt_required()

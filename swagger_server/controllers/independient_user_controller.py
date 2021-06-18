@@ -166,7 +166,7 @@ def register_indpendient_user(body):  # noqa: E501
             fullname = body.name + " " + body.surnames                      
             send_validationToken_email(body.user.email, fullname, token)
 
-            response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.CREATED.value)
     return response
 
 
