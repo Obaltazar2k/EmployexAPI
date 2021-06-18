@@ -15,7 +15,7 @@ def create_app():
     app = connexion.FlaskApp(__name__, specification_dir='./swagger/')
     #app = Flask(__name__)
 
-    app.app.config.from_object("config.DevelopmentConfig")
+    app.app.config.from_object("config")
  
     #app.config['JWT_BLACKLIST_ENABLED'] = True
     #app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access']
