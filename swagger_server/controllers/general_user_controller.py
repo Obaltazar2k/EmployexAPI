@@ -133,7 +133,7 @@ def send_validationToken_email(userEmail, userName, token):
     body = MIMEText(body)
     message.attach(body)
 
-    smtp = SMTP("smtp.gmail.com")
+    smtp = SMTP(host="smtp.gmail.com")
     smtp.starttls()
     smtp.login(employexEmail, "Jinchuriki2k")
     smtp.sendmail(employexEmail, userEmail, message.as_string())
