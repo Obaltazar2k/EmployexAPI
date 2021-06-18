@@ -17,6 +17,7 @@ def create_app():
 
     app.app.config.from_object("config")
  
+    app.app.config["JWT_SECRET_KEY"] = "Blah!"
     #app.config['JWT_BLACKLIST_ENABLED'] = True
     #app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access']
     jwt.init_app(app.app)
