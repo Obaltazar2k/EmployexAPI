@@ -6,8 +6,9 @@ from flask import Response
 from http import HTTPStatus
 from swagger_server.data.db import Experiencialaboral, Independiente
 from peewee import DoesNotExist
+from flask_jwt_extended import jwt_required
 
-
+@jwt_required()
 def add_laboral_experience(body, user_id):  # noqa: E501
     """Adds laboral experience info to an independient user
 
@@ -40,7 +41,7 @@ def add_laboral_experience(body, user_id):  # noqa: E501
             else:
                 postedLaboralExperience.cargoactual = False
             postedLaboralExperience.save()
-            response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.CREATED.value)
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)
     return response

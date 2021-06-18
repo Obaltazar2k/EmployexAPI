@@ -5,8 +5,9 @@ from flask import Response
 from http import HTTPStatus
 from swagger_server.data.db import Certificacion, Independiente
 from peewee import DoesNotExist
+from flask_jwt_extended import jwt_required
 
-
+@jwt_required()
 def add_certification(body, user_id):  # noqa: E501
     """Adds certification info to an independient user
 
@@ -34,7 +35,7 @@ def add_certification(body, user_id):  # noqa: E501
             postedCertification.fechacaducidad = body.expiration_date
                        
             postedCertification.save()
-            response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.CREATED.value)
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)
     return response

@@ -5,8 +5,9 @@ from flask import Response
 from http import HTTPStatus
 from swagger_server.data.db import Educacion, Independiente
 from peewee import DoesNotExist
+from flask_jwt_extended import jwt_required
 
-
+@jwt_required()
 def add_education(body, user_id):  # noqa: E501
     """Adds education info to an independient user
 
@@ -36,7 +37,7 @@ def add_education(body, user_id):  # noqa: E501
             postedEducation.fechafin = body.end_date
             
             postedEducation.save()
-            response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.CREATED.value)
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)
     return response

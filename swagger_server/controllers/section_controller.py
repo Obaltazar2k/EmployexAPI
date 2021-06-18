@@ -5,8 +5,9 @@ from flask import Response
 from http import HTTPStatus
 from swagger_server.data.db import Seccion, Media, Independiente
 from peewee import DoesNotExist
+from flask_jwt_extended import jwt_required
 
-
+@jwt_required()
 def add_section(body, user_id):  # noqa: E501
     """Adds section info to an independient user
 
@@ -40,7 +41,7 @@ def add_section(body, user_id):  # noqa: E501
                         seccion = postedSection.seccion_id,
                         usuariocorreo = user_id)
                         
-            response = Response(status=HTTPStatus.OK.value)
+            response = Response(status=HTTPStatus.CREATED.value)
         except DoesNotExist:
             response = Response(status=HTTPStatus.NOT_FOUND.value)
     return response
