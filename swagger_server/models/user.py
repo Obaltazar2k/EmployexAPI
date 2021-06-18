@@ -45,6 +45,7 @@ class User(Model):
 
         self.attribute_map = {
             'user_id': 'user_id',
+            'user_id': 'userId',
             'email': 'email',
             'password': 'password',
             'city': 'city',
