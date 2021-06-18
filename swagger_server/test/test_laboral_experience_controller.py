@@ -19,7 +19,7 @@ class TestLaboralExperienceController(BaseTestCase):
         """
         body = LaboralExperience()
         response = self.client.open(
-            '/ricardorzan/Employex/1.0.0/users/independient_user/{userId}/laboral_experience'.format(user_id=56),
+            '/ricardorzan/Employex/1.0.0/users/independient_user/{user_id}/laboral_experience'.format(user_id=56),
             method='POST',
             data=json.dumps(body),
             content_type='application/json')

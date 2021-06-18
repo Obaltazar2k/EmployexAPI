@@ -46,11 +46,11 @@ class Education(Model):
         }
 
         self.attribute_map = {
-            'education_id': 'educationId',
+            'education_id': 'education_id',
             'description': 'description',
             'discipline': 'discipline',
-            'end_date': 'endDate',
-            'start_date': 'startDate',
+            'end_date': 'end_date',
+            'start_date': 'start_date',
             'average': 'average',
             'title': 'title',
             'university': 'university'

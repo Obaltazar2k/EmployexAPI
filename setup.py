@@ -17,10 +17,10 @@ REQUIRES = ["connexion"]
 setup(
     name=NAME,
     version=VERSION,
-    description="Swagger Employex API",
+    description="Employex",
     author_email="ricardorzan@gmail.com",
     url="",
-    keywords=["Swagger", "Swagger Employex API"],
+    keywords=["Swagger", "Employex"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['swagger/swagger.yaml']},
@@ -28,6 +28,6 @@ setup(
     entry_points={
         'console_scripts': ['swagger_server=swagger_server.__main__:main']},
     long_description="""\
-    This is a sample API that allows to manage Employex system, which serves for users seeking to apply for job offersm 
+    This is a sample API that allows to manage Employex system, which serves for users seeking to apply for job offers. 
     """
 )

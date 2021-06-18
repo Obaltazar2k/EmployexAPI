@@ -16,7 +16,7 @@ class OrganizationUser(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, name: str=None, about: str=None, zip_code: int=None, contact_name: str=None, contact_phone: str=None, email: str=None, web_site: str=None, work_sector: Sector=None, user: User=None):  # noqa: E501
+    def __init__(self, name: str=None, about: str=None, zip_code: int=None, contact_name: str=None, contact_phone: str=None, contact_email: str=None, web_site: str=None, work_sector: Sector=None, user: User=None):  # noqa: E501
         """OrganizationUser - a model defined in Swagger
 
         :param name: The name of this OrganizationUser.  # noqa: E501
@@ -29,8 +29,8 @@ class OrganizationUser(Model):
         :type contact_name: str
         :param contact_phone: The contact_phone of this OrganizationUser.  # noqa: E501
         :type contact_phone: str
-        :param email: The email of this OrganizationUser.  # noqa: E501
-        :type email: str
+        :param contact_email: The contact_email of this OrganizationUser.  # noqa: E501
+        :type contact_email: str
         :param web_site: The web_site of this OrganizationUser.  # noqa: E501
         :type web_site: str
         :param work_sector: The work_sector of this OrganizationUser.  # noqa: E501
@@ -44,7 +44,7 @@ class OrganizationUser(Model):
             'zip_code': int,
             'contact_name': str,
             'contact_phone': str,
-            'email': str,
+            'contact_email': str,
             'web_site': str,
             'work_sector': Sector,
             'user': User
@@ -53,12 +53,12 @@ class OrganizationUser(Model):
         self.attribute_map = {
             'name': 'name',
             'about': 'about',
-            'zip_code': 'zipCode',
-            'contact_name': 'contactName',
-            'contact_phone': 'contactPhone',
-            'email': 'email',
-            'web_site': 'webSite',
-            'work_sector': 'workSector',
+            'zip_code': 'zip_code',
+            'contact_name': 'contact_name',
+            'contact_phone': 'contact_phone',
+            'contact_email': 'contact_email',
+            'web_site': 'web_site',
+            'work_sector': 'work_sector',
             'user': 'user'
         }
         self._name = name
@@ -66,7 +66,7 @@ class OrganizationUser(Model):
         self._zip_code = zip_code
         self._contact_name = contact_name
         self._contact_phone = contact_phone
-        self._email = email
+        self._contact_email = contact_email
         self._web_site = web_site
         self._work_sector = work_sector
         self._user = user
@@ -200,27 +200,29 @@ class OrganizationUser(Model):
         self._contact_phone = contact_phone
 
     @property
-    def email(self) -> str:
-        """Gets the email of this OrganizationUser.
+    def contact_email(self) -> str:
+        """Gets the contact_email of this OrganizationUser.
 
         Contact person's email  # noqa: E501
 
-        :return: The email of this OrganizationUser.
+        :return: The contact_email of this OrganizationUser.
         :rtype: str
         """
-        return self._email
+        return self._contact_email
 
-    @email.setter
-    def email(self, email: str):
-        """Sets the email of this OrganizationUser.
+    @contact_email.setter
+    def contact_email(self, contact_email: str):
+        """Sets the contact_email of this OrganizationUser.
 
         Contact person's email  # noqa: E501
 
-        :param email: The email of this OrganizationUser.
-        :type email: str
+        :param contact_email: The contact_email of this OrganizationUser.
+        :type contact_email: str
         """
+        if contact_email is None:
+            raise ValueError("Invalid value for `contact_email`, must not be `None`")  # noqa: E501
 
-        self._email = email
+        self._contact_email = contact_email
 
     @property
     def web_site(self) -> str:

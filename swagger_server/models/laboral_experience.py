@@ -51,14 +51,14 @@ class LaboralExperience(Model):
         }
 
         self.attribute_map = {
-            'laboral_experience_id': 'laboralExperienceId',
-            'job_title': 'jobTitle',
-            'current_job': 'currentJob',
-            'end_date': 'endDate',
-            'start_date': 'startDate',
-            'company_name': 'companyName',
+            'laboral_experience_id': 'laboral_experience_id',
+            'job_title': 'job_title',
+            'current_job': 'current_job',
+            'end_date': 'end_date',
+            'start_date': 'start_date',
+            'company_name': 'company_name',
             'sector': 'sector',
-            'job_category': 'JobCategory',
+            'job_category': 'job_category',
             'location': 'location'
         }
         self._laboral_experience_id = laboral_experience_id

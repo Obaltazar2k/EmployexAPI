@@ -8,7 +8,6 @@ from typing import List, Dict  # noqa: F401
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.job_category import JobCategory  # noqa: F401,E501
 from swagger_server.models.media import Media  # noqa: F401,E501
-from swagger_server.models.tag import Tag  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -17,7 +16,7 @@ class JobOffer(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, job_offer_id: str=None, job: str=None, description: str=None, job_category: JobCategory=None, location: str=None, tags: List[Tag]=None, media: List[Media]=None):  # noqa: E501
+    def __init__(self, job_offer_id: str=None, job: str=None, description: str=None, job_category: JobCategory=None, location: str=None, media: List[Media]=None, username: str=None):  # noqa: E501
         """JobOffer - a model defined in Swagger
 
         :param job_offer_id: The job_offer_id of this JobOffer.  # noqa: E501
@@ -30,10 +29,10 @@ class JobOffer(Model):
         :type job_category: JobCategory
         :param location: The location of this JobOffer.  # noqa: E501
         :type location: str
-        :param tags: The tags of this JobOffer.  # noqa: E501
-        :type tags: List[Tag]
         :param media: The media of this JobOffer.  # noqa: E501
         :type media: List[Media]
+        :param username: User who publish the JobOffer.  # noqa: E501
+        :type location: str
         """
         self.swagger_types = {
             'job_offer_id': str,
@@ -41,26 +40,26 @@ class JobOffer(Model):
             'description': str,
             'job_category': JobCategory,
             'location': str,
-            'tags': List[Tag],
-            'media': List[Media]
+            'media': List[Media],
+            'username': str
         }
 
         self.attribute_map = {
-            'job_offer_id': 'jobOfferId',
+            'job_offer_id': 'job_offer_id',
             'job': 'job',
             'description': 'description',
-            'job_category': 'JobCategory',
+            'job_category': 'job_category',
             'location': 'location',
-            'tags': 'tags',
-            'media': 'media'
+            'media': 'media',
+            'username':'username'
         }
         self._job_offer_id = job_offer_id
         self._job = job
         self._description = description
         self._job_category = job_category
         self._location = location
-        self._tags = tags
         self._media = media
+        self._username = username
 
     @classmethod
     def from_dict(cls, dikt) -> 'JobOffer':
@@ -191,29 +190,6 @@ class JobOffer(Model):
         self._location = location
 
     @property
-    def tags(self) -> List[Tag]:
-        """Gets the tags of this JobOffer.
-
-        Differents tags associated to the job offer  # noqa: E501
-
-        :return: The tags of this JobOffer.
-        :rtype: List[Tag]
-        """
-        return self._tags
-
-    @tags.setter
-    def tags(self, tags: List[Tag]):
-        """Sets the tags of this JobOffer.
-
-        Differents tags associated to the job offer  # noqa: E501
-
-        :param tags: The tags of this JobOffer.
-        :type tags: List[Tag]
-        """
-
-        self._tags = tags
-
-    @property
     def media(self) -> List[Media]:
         """Gets the media of this JobOffer.
 
@@ -235,3 +211,26 @@ class JobOffer(Model):
         """
 
         self._media = media
+
+    @property
+    def username(self) -> str:
+        """Gets the username of this JobOffer.
+
+        User who pusblish the job offer  # noqa: E501
+
+        :return: User who pusblish the job offe
+        :rtype: str
+        """
+        return self._username
+
+    @username.setter
+    def username(self, username: str):
+        """Sets the username of this JobOffer.
+
+        User who pusblish the job offer  # noqa: E501
+
+        :param location: User who pusblish the job offe
+        :type location: str
+        """
+
+        self._username = username

@@ -19,7 +19,7 @@ class TestEducationController(BaseTestCase):
         """
         body = Education()
         response = self.client.open(
-            '/ricardorzan/Employex/1.0.0/users/independient_user/{userId}/education'.format(user_id=56),
+            '/ricardorzan/Employex/1.0.0/users/independient_user/{user_id}/education'.format(user_id=56),
             method='POST',
             data=json.dumps(body),
             content_type='application/json')

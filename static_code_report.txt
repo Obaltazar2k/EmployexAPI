@@ -1,0 +1,1305 @@
+************* Module swagger_server.app
+swagger_server\app.py(19): [C0303] Trailing whitespace
+swagger_server\app.py(24): [C0303] Trailing whitespace
+swagger_server\app.py(26): [C0303] Trailing whitespace
+swagger_server\app.py(31): [C0304] Final newline missing
+swagger_server\app.py(1): [C0114] Missing module docstring
+swagger_server\app.py(14): [C0116create_app] Missing function or method docstring
+swagger_server\app.py(2): [W0611] Unused import datetime
+swagger_server\app.py(5): [W0611] Unused Flask imported from flask
+swagger_server\app.py(6): [W0611] Unused Limiter imported from flask_limiter
+swagger_server\app.py(7): [W0611] Unused get_remote_address imported from flask_limiter.util
+************* Module swagger_server.encoder
+swagger_server\encoder.py(1): [C0114] Missing module docstring
+swagger_server\encoder.py(7): [C0115JSONEncoder] Missing class docstring
+************* Module swagger_server.util
+swagger_server\util.py(1): [C0114] Missing module docstring
+swagger_server\util.py(18): [R1705_deserialize] Unnecessary "elif" after "return"
+swagger_server\util.py(7): [R1710_deserialize] Either all return statements in a function should return an expression, or none of them should.
+swagger_server\util.py(7): [R0911_deserialize] Too many return statements (8/6)
+swagger_server\util.py(70): [C0415deserialize_date] Import outside toplevel (dateutil.parser.parse)
+swagger_server\util.py(87): [C0415deserialize_datetime] Import outside toplevel (dateutil.parser.parse)
+swagger_server\util.py(4): [W0611] Unused import typing
+swagger_server\util.py(4): [C0411] standard import "import typing" should be placed before "import six"
+************* Module swagger_server.__main__
+swagger_server\__main__.py(3): [C0303] Trailing whitespace
+swagger_server\__main__.py(1): [C0114] Missing module docstring
+************* Module swagger_server.controllers.aplications_controller
+swagger_server\controllers\aplications_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\aplications_controller.py(17): [W0613add_aplication_to_job_offer] Unused argument 'user_id'
+swagger_server\controllers\aplications_controller.py(17): [W0613add_aplication_to_job_offer] Unused argument 'job_offer_id'
+swagger_server\controllers\aplications_controller.py(30): [W0613get_job_offers_aplications] Unused argument 'user_id'
+swagger_server\controllers\aplications_controller.py(30): [W0613get_job_offers_aplications] Unused argument 'job_offer_id'
+swagger_server\controllers\aplications_controller.py(1): [W0611] Unused final imported from typing
+swagger_server\controllers\aplications_controller.py(2): [W0611] Unused import connexion
+swagger_server\controllers\aplications_controller.py(3): [W0611] Unused import six
+swagger_server\controllers\aplications_controller.py(5): [W0611] Unused Aplication imported from swagger_server.models.aplication
+swagger_server\controllers\aplications_controller.py(6): [W0611] Unused util imported from swagger_server
+swagger_server\controllers\aplications_controller.py(8): [W0611] Unused get_jwt_identity imported from flask_jwt_extended
+swagger_server\controllers\aplications_controller.py(9): [W0611] Unused Response imported from flask
+swagger_server\controllers\aplications_controller.py(10): [W0611] Unused HTTPStatus imported from http
+swagger_server\controllers\aplications_controller.py(11): [W0611] Unused Aplicacion imported from swagger_server.data.db
+swagger_server\controllers\aplications_controller.py(11): [W0611] Unused Ofertadetrabajo imported from swagger_server.data.db
+swagger_server\controllers\aplications_controller.py(11): [W0611] Unused database imported from swagger_server.data.db
+swagger_server\controllers\aplications_controller.py(11): [W0611] Unused Usuario imported from swagger_server.data.db
+swagger_server\controllers\aplications_controller.py(12): [W0611] Unused date imported from datetime
+swagger_server\controllers\aplications_controller.py(13): [W0611] Unused DoesNotExist imported from peewee
+swagger_server\controllers\aplications_controller.py(7): [C0411] third party import "from flask_jwt_extended import jwt_required" should be placed before "from swagger_server.models.aplication import Aplication"
+swagger_server\controllers\aplications_controller.py(8): [C0411] third party import "from flask_jwt_extended import get_jwt_identity" should be placed before "from swagger_server.models.aplication import Aplication"
+swagger_server\controllers\aplications_controller.py(9): [C0411] third party import "from flask import Response" should be placed before "from swagger_server.models.aplication import Aplication"
+swagger_server\controllers\aplications_controller.py(10): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\aplications_controller.py(12): [C0411] standard import "from datetime import date" should be placed before "import connexion"
+swagger_server\controllers\aplications_controller.py(13): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.aplication import Aplication"
+swagger_server\controllers\aplications_controller.py(11): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.authorization_controller
+swagger_server\controllers\authorization_controller.py(9): [C0305] Trailing newlines
+swagger_server\controllers\authorization_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\authorization_controller.py(2): [W0105] String statement has no effect
+swagger_server\controllers\authorization_controller.py(6): [C0103check_bearerAuth] Function name "check_bearerAuth" doesn't conform to snake_case naming style
+swagger_server\controllers\authorization_controller.py(6): [C0116check_bearerAuth] Missing function or method docstring
+swagger_server\controllers\authorization_controller.py(6): [W0613check_bearerAuth] Unused argument 'token'
+swagger_server\controllers\authorization_controller.py(1): [W0611] Unused List imported from typing
+************* Module swagger_server.controllers.certification_controller
+swagger_server\controllers\certification_controller.py(31): [C0303] Trailing whitespace
+swagger_server\controllers\certification_controller.py(35): [C0303] Trailing whitespace
+swagger_server\controllers\certification_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\certification_controller.py(26): [C0103add_certification] Variable name "postedCertification" doesn't conform to snake_case naming style
+swagger_server\controllers\certification_controller.py(27): [C0103add_certification] Variable name "retrievedIndependientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\certification_controller.py(4): [C0411] third party import "from flask import Response" should be placed before "from swagger_server.models.certification import Certification"
+swagger_server\controllers\certification_controller.py(5): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\certification_controller.py(7): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.certification import Certification"
+swagger_server\controllers\certification_controller.py(6): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.education_controller
+swagger_server\controllers\education_controller.py(23): [C0303] Trailing whitespace
+swagger_server\controllers\education_controller.py(33): [C0303] Trailing whitespace
+swagger_server\controllers\education_controller.py(37): [C0303] Trailing whitespace
+swagger_server\controllers\education_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\education_controller.py(26): [C0103add_education] Variable name "postedEducation" doesn't conform to snake_case naming style
+swagger_server\controllers\education_controller.py(27): [C0103add_education] Variable name "retrievedIndependientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\education_controller.py(4): [C0411] third party import "from flask import Response" should be placed before "from swagger_server.models.education import Education"
+swagger_server\controllers\education_controller.py(5): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\education_controller.py(7): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.education import Education"
+swagger_server\controllers\education_controller.py(6): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.general_user_controller
+swagger_server\controllers\general_user_controller.py(24): [C0303] Trailing whitespace
+swagger_server\controllers\general_user_controller.py(41): [C0325] Unnecessary parens after 'if' keyword
+swagger_server\controllers\general_user_controller.py(42): [C0325] Unnecessary parens after 'if' keyword
+swagger_server\controllers\general_user_controller.py(45): [C0301] Line too long (152/100)
+swagger_server\controllers\general_user_controller.py(48): [C0301] Line too long (121/100)
+swagger_server\controllers\general_user_controller.py(51): [C0303] Trailing whitespace
+swagger_server\controllers\general_user_controller.py(53): [C0301] Line too long (118/100)
+swagger_server\controllers\general_user_controller.py(55): [C0301] Line too long (118/100)
+swagger_server\controllers\general_user_controller.py(124): [C0303] Trailing whitespace
+swagger_server\controllers\general_user_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\general_user_controller.py(3): [C0410] Multiple imports on one line (six, json)
+swagger_server\controllers\general_user_controller.py(46): [W0702login_user] No exception type(s) specified
+swagger_server\controllers\general_user_controller.py(54): [W0702login_user] No exception type(s) specified
+swagger_server\controllers\general_user_controller.py(89): [C0103validate_user] Variable name "retrieveGeneralUser" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(115): [C0103generate_new_token] Variable name "retrieveGeneralUser" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(127): [C0103send_validationToken_email] Function name "send_validationToken_email" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(127): [C0103send_validationToken_email] Argument name "userEmail" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(127): [C0103send_validationToken_email] Argument name "userName" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(127): [C0116send_validationToken_email] Missing function or method docstring
+swagger_server\controllers\general_user_controller.py(128): [C0103send_validationToken_email] Variable name "employexEmail" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(143): [C0103tokenGenerator] Function name "tokenGenerator" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(143): [C0116tokenGenerator] Missing function or method docstring
+swagger_server\controllers\general_user_controller.py(145): [C0103tokenGenerator] Variable name "x" doesn't conform to snake_case naming style
+swagger_server\controllers\general_user_controller.py(145): [W0612tokenGenerator] Unused variable 'x'
+swagger_server\controllers\general_user_controller.py(1): [W0611] Unused T imported from swagger_server.models.base_model_
+swagger_server\controllers\general_user_controller.py(2): [W0611] Unused import connexion
+swagger_server\controllers\general_user_controller.py(3): [W0611] Unused import six
+swagger_server\controllers\general_user_controller.py(3): [W0611] Unused import json
+swagger_server\controllers\general_user_controller.py(7): [W0611] Unused request imported from flask
+swagger_server\controllers\general_user_controller.py(7): [W0611] Unused session imported from flask
+swagger_server\controllers\general_user_controller.py(7): [W0611] Unused Flask imported from flask
+swagger_server\controllers\general_user_controller.py(9): [W0611] Unused get_jwt_identity imported from flask_jwt_extended
+swagger_server\controllers\general_user_controller.py(10): [W0611] Unused jwt_required imported from flask_jwt_extended
+swagger_server\controllers\general_user_controller.py(11): [W0611] Unused limiter imported from swagger_server.app
+swagger_server\controllers\general_user_controller.py(13): [W0611] Unused User imported from swagger_server.models.user
+swagger_server\controllers\general_user_controller.py(14): [W0611] Unused DBConnection imported from swagger_server.data.DBConnection
+swagger_server\controllers\general_user_controller.py(2): [C0411] third party import "import connexion" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(3): [C0411] third party import "import six, json" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(3): [C0411] standard import "import six, json" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(4): [C0411] standard import "import random" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(5): [C0411] standard import "import string" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(7): [C0411] third party import "from flask import Blueprint, request, Response, session, Flask" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(8): [C0411] third party import "from flask_jwt_extended import create_access_token" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(9): [C0411] third party import "from flask_jwt_extended import get_jwt_identity" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(10): [C0411] third party import "from flask_jwt_extended import jwt_required" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(12): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.base_model_ import T"
+swagger_server\controllers\general_user_controller.py(15): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(17): [C0411] standard import "from email.mime.multipart import MIMEMultipart" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(18): [C0411] standard import "from email.mime.text import MIMEText" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(19): [C0411] standard import "from smtplib import SMTP" should be placed before "import connexion"
+swagger_server\controllers\general_user_controller.py(11): [C0412] Imports from package swagger_server are not grouped
+swagger_server\controllers\general_user_controller.py(13): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.independient_user_controller
+swagger_server\controllers\independient_user_controller.py(15): [C0301] Line too long (128/100)
+swagger_server\controllers\independient_user_controller.py(17): [C0301] Line too long (105/100)
+swagger_server\controllers\independient_user_controller.py(55): [C0303] Trailing whitespace
+swagger_server\controllers\independient_user_controller.py(57): [C0301] Line too long (154/100)
+swagger_server\controllers\independient_user_controller.py(64): [C0301] Line too long (101/100)
+swagger_server\controllers\independient_user_controller.py(70): [C0301] Line too long (101/100)
+swagger_server\controllers\independient_user_controller.py(75): [C0301] Line too long (127/100)
+swagger_server\controllers\independient_user_controller.py(90): [C0303] Trailing whitespace
+swagger_server\controllers\independient_user_controller.py(92): [C0301] Line too long (139/100)
+swagger_server\controllers\independient_user_controller.py(99): [C0301] Line too long (101/100)
+swagger_server\controllers\independient_user_controller.py(100): [C0301] Line too long (102/100)
+swagger_server\controllers\independient_user_controller.py(107): [C0301] Line too long (121/100)
+swagger_server\controllers\independient_user_controller.py(116): [C0301] Line too long (101/100)
+swagger_server\controllers\independient_user_controller.py(128): [C0301] Line too long (117/100)
+swagger_server\controllers\independient_user_controller.py(132): [C0303] Trailing whitespace
+swagger_server\controllers\independient_user_controller.py(156): [C0301] Line too long (124/100)
+swagger_server\controllers\independient_user_controller.py(157): [C0301] Line too long (110/100)
+swagger_server\controllers\independient_user_controller.py(166): [C0303] Trailing whitespace
+swagger_server\controllers\independient_user_controller.py(167): [C0301] Line too long (133/100)
+swagger_server\controllers\independient_user_controller.py(170): [C0303] Trailing whitespace
+swagger_server\controllers\independient_user_controller.py(197): [C0301] Line too long (143/100)
+swagger_server\controllers\independient_user_controller.py(213): [C0304] Final newline missing
+swagger_server\controllers\independient_user_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\independient_user_controller.py(20): [R0914get_independint_user_by_id] Too many local variables (29/15)
+swagger_server\controllers\independient_user_controller.py(33): [C0103get_independint_user_by_id] Variable name "retrieveIndependientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(34): [C0103get_independint_user_by_id] Variable name "independientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(40): [C0103get_independint_user_by_id] Variable name "retrieveGeneralUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(41): [C0103get_independint_user_by_id] Variable name "generalUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(48): [C0103get_independint_user_by_id] Variable name "retrievedPerfilPhoto" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(49): [C0103get_independint_user_by_id] Variable name "profilePhoto" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(57): [C0103get_independint_user_by_id] Variable name "retrieveLaboralExperienice_list" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(59): [C0103get_independint_user_by_id] Variable name "laboralExperiencie_list" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(60): [C0103get_independint_user_by_id] Variable name "laboralExperience" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(61): [C0103get_independint_user_by_id] Variable name "laboralExperience_aux" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(75): [C0103get_independint_user_by_id] Variable name "retrieveEducation_list" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(92): [C0103get_independint_user_by_id] Variable name "retrieveCertification_list" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(107): [C0103get_independint_user_by_id] Variable name "retrieveSection_list" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(116): [C0103get_independint_user_by_id] Variable name "retrieveSectionMedia_list" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(127): [C0103get_independint_user_by_id] Variable name "independientUser_json" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(32): [R1702get_independint_user_by_id] Too many nested blocks (6/5)
+swagger_server\controllers\independient_user_controller.py(20): [R0912get_independint_user_by_id] Too many branches (14/12)
+swagger_server\controllers\independient_user_controller.py(20): [R0915get_independint_user_by_id] Too many statements (88/50)
+swagger_server\controllers\independient_user_controller.py(152): [R1705register_indpendient_user] Unnecessary "else" after "return"
+swagger_server\controllers\independient_user_controller.py(156): [C0103register_indpendient_user] Variable name "postedUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(159): [C0103register_indpendient_user] Variable name "postedMedia" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(195): [C0103patch_independint_user_by_id] Variable name "retrieveIndependientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(196): [C0103patch_independint_user_by_id] Variable name "retrieveGeneralUser" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(197): [C0103patch_independint_user_by_id] Variable name "retrieveMedia" doesn't conform to snake_case naming style
+swagger_server\controllers\independient_user_controller.py(2): [C0411] standard import "import json" should be placed before "import connexion"
+swagger_server\controllers\independient_user_controller.py(13): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\independient_user_controller.py(14): [C0411] third party import "from flask_jwt_extended import jwt_required" should be placed before "from swagger_server.models.independient_user import IndependientUser"
+swagger_server\controllers\independient_user_controller.py(16): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.independient_user import IndependientUser"
+swagger_server\controllers\independient_user_controller.py(15): [C0412] Imports from package swagger_server are not grouped
+swagger_server\controllers\independient_user_controller.py(17): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.job_offer_controller
+swagger_server\controllers\job_offer_controller.py(15): [C0301] Line too long (103/100)
+swagger_server\controllers\job_offer_controller.py(41): [C0301] Line too long (114/100)
+swagger_server\controllers\job_offer_controller.py(60): [C0303] Trailing whitespace
+swagger_server\controllers\job_offer_controller.py(111): [C0303] Trailing whitespace
+swagger_server\controllers\job_offer_controller.py(140): [C0301] Line too long (110/100)
+swagger_server\controllers\job_offer_controller.py(182): [C0301] Line too long (111/100)
+swagger_server\controllers\job_offer_controller.py(202): [C0301] Line too long (102/100)
+swagger_server\controllers\job_offer_controller.py(203): [C0303] Trailing whitespace
+swagger_server\controllers\job_offer_controller.py(232): [C0301] Line too long (110/100)
+swagger_server\controllers\job_offer_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\job_offer_controller.py(168): [W0212get_job_offers_aplications] Access to a protected member _date of a client class
+swagger_server\controllers\job_offer_controller.py(146): [W0613get_job_offers_aplications] Unused argument 'user_id'
+swagger_server\controllers\job_offer_controller.py(158): [W0612get_job_offers_aplications] Unused variable 'current_user'
+swagger_server\controllers\job_offer_controller.py(188): [W0613get_job_offers_published_by_the_user] Unused argument 'user_id'
+swagger_server\controllers\job_offer_controller.py(2): [W0611] Unused final imported from typing
+swagger_server\controllers\job_offer_controller.py(4): [W0611] Unused import six
+swagger_server\controllers\job_offer_controller.py(9): [W0611] Unused util imported from swagger_server
+swagger_server\controllers\job_offer_controller.py(11): [W0611] Unused DBConnection imported from swagger_server.data.DBConnection
+swagger_server\controllers\job_offer_controller.py(15): [W0611] Unused Usuario imported from swagger_server.data.db
+swagger_server\controllers\job_offer_controller.py(10): [C0411] third party import "from flask import Response" should be placed before "from swagger_server.models.job_offer import JobOffer"
+swagger_server\controllers\job_offer_controller.py(12): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\job_offer_controller.py(13): [C0411] third party import "from flask_jwt_extended import jwt_required" should be placed before "from swagger_server.models.job_offer import JobOffer"
+swagger_server\controllers\job_offer_controller.py(14): [C0411] third party import "from flask_jwt_extended import get_jwt_identity" should be placed before "from swagger_server.models.job_offer import JobOffer"
+swagger_server\controllers\job_offer_controller.py(16): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.job_offer import JobOffer"
+swagger_server\controllers\job_offer_controller.py(17): [C0411] standard import "from datetime import date" should be placed before "import connexion"
+swagger_server\controllers\job_offer_controller.py(11): [C0412] Imports from package swagger_server are not grouped
+swagger_server\controllers\job_offer_controller.py(15): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.laboral_experience_controller
+swagger_server\controllers\laboral_experience_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\laboral_experience_controller.py(27): [C0103add_laboral_experience] Variable name "postedLaboralExperience" doesn't conform to snake_case naming style
+swagger_server\controllers\laboral_experience_controller.py(28): [C0103add_laboral_experience] Variable name "retrievedIndependientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\laboral_experience_controller.py(38): [C0121add_laboral_experience] Comparison 'body.current_job == True' should be 'body.current_job is True' if checking for the singleton value True, or 'body.current_job' if testing for truthiness
+swagger_server\controllers\laboral_experience_controller.py(1): [W0611] Unused pos imported from operator
+swagger_server\controllers\laboral_experience_controller.py(5): [C0411] third party import "from flask import Response" should be placed before "from swagger_server.models.laboral_experience import LaboralExperience"
+swagger_server\controllers\laboral_experience_controller.py(6): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\laboral_experience_controller.py(8): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.laboral_experience import LaboralExperience"
+swagger_server\controllers\laboral_experience_controller.py(7): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.organization_user_controller
+swagger_server\controllers\organization_user_controller.py(13): [C0301] Line too long (105/100)
+swagger_server\controllers\organization_user_controller.py(57): [C0301] Line too long (117/100)
+swagger_server\controllers\organization_user_controller.py(61): [C0303] Trailing whitespace
+swagger_server\controllers\organization_user_controller.py(86): [C0301] Line too long (124/100)
+swagger_server\controllers\organization_user_controller.py(87): [C0301] Line too long (110/100)
+swagger_server\controllers\organization_user_controller.py(97): [C0301] Line too long (140/100)
+swagger_server\controllers\organization_user_controller.py(98): [C0301] Line too long (171/100)
+swagger_server\controllers\organization_user_controller.py(124): [C0301] Line too long (143/100)
+swagger_server\controllers\organization_user_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\organization_user_controller.py(29): [C0103get_organization_user_by_id] Variable name "retrieveOrganizationtUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(30): [C0103get_organization_user_by_id] Variable name "organizationUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(40): [C0103get_organization_user_by_id] Variable name "retrieveGeneralUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(41): [C0103get_organization_user_by_id] Variable name "generalUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(48): [C0103get_organization_user_by_id] Variable name "retrievedPerfilPhoto" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(49): [C0103get_organization_user_by_id] Variable name "profilePhoto" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(56): [C0103get_organization_user_by_id] Variable name "organizationUser_json" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(82): [R1705register_organization_user] Unnecessary "else" after "return"
+swagger_server\controllers\organization_user_controller.py(86): [C0103register_organization_user] Variable name "postedUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(89): [C0103register_organization_user] Variable name "postedMedia" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(122): [C0103patch_organization_user_by_id] Variable name "retrieveOrganizationUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(123): [C0103patch_organization_user_by_id] Variable name "retrieveGeneralUser" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(124): [C0103patch_organization_user_by_id] Variable name "retrieveMedia" doesn't conform to snake_case naming style
+swagger_server\controllers\organization_user_controller.py(2): [C0411] standard import "import json" should be placed before "import connexion"
+swagger_server\controllers\organization_user_controller.py(9): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\organization_user_controller.py(11): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.organization_user import OrganizationUser"
+swagger_server\controllers\organization_user_controller.py(12): [C0411] third party import "from flask_jwt_extended import jwt_required" should be placed before "from swagger_server.models.organization_user import OrganizationUser"
+swagger_server\controllers\organization_user_controller.py(13): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.controllers.section_controller
+swagger_server\controllers\section_controller.py(27): [C0303] Trailing whitespace
+swagger_server\controllers\section_controller.py(31): [C0303] Trailing whitespace
+swagger_server\controllers\section_controller.py(34): [C0301] Line too long (155/100)
+swagger_server\controllers\section_controller.py(35): [C0303] Trailing whitespace
+swagger_server\controllers\section_controller.py(42): [C0303] Trailing whitespace
+swagger_server\controllers\section_controller.py(1): [C0114] Missing module docstring
+swagger_server\controllers\section_controller.py(26): [C0103add_section] Variable name "retrievedIndependientUser" doesn't conform to snake_case naming style
+swagger_server\controllers\section_controller.py(28): [W0105add_section] String statement has no effect
+swagger_server\controllers\section_controller.py(34): [C0103add_section] Variable name "postedSection" doesn't conform to snake_case naming style
+swagger_server\controllers\section_controller.py(36): [C0121add_section] Comparison 'body.media != None' should be 'body.media is not None'
+swagger_server\controllers\section_controller.py(4): [C0411] third party import "from flask import Response" should be placed before "from swagger_server.models.section import Section"
+swagger_server\controllers\section_controller.py(5): [C0411] standard import "from http import HTTPStatus" should be placed before "import connexion"
+swagger_server\controllers\section_controller.py(7): [C0411] third party import "from peewee import DoesNotExist" should be placed before "from swagger_server.models.section import Section"
+swagger_server\controllers\section_controller.py(6): [C0412] Imports from package swagger_server are not grouped
+************* Module swagger_server.models.api_response
+swagger_server\models\api_response.py(1): [C0114] Missing module docstring
+swagger_server\models\api_response.py(17): [W0622ApiResponse.__init__] Redefining built-in 'type'
+swagger_server\models\api_response.py(85): [W0622ApiResponse.type] Redefining built-in 'type'
+swagger_server\models\api_response.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\api_response.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\api_response.py(6): [W0611] Unused List imported from typing
+swagger_server\models\api_response.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.aplication
+swagger_server\models\aplication.py(17): [C0301] Line too long (132/100)
+swagger_server\models\aplication.py(1): [C0114] Missing module docstring
+swagger_server\models\aplication.py(12): [R0902Aplication] Too many instance attributes (9/7)
+swagger_server\models\aplication.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\aplication.py(6): [W0611] Unused List imported from typing
+swagger_server\models\aplication.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.aptitude
+swagger_server\models\aptitude.py(1): [C0114] Missing module docstring
+swagger_server\models\aptitude.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\aptitude.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\aptitude.py(6): [W0611] Unused List imported from typing
+swagger_server\models\aptitude.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.base_model_
+swagger_server\models\base_model_.py(1): [C0114] Missing module docstring
+swagger_server\models\base_model_.py(8): [C0103] Class name "T" doesn't conform to PascalCase naming style
+swagger_server\models\base_model_.py(11): [C0115Model] Missing class docstring
+swagger_server\models\base_model_.py(11): [R0205Model] Class 'Model' inherits from object, can be safely removed from bases in python3
+swagger_server\models\base_model_.py(4): [C0411] standard import "import typing" should be placed before "import six"
+************* Module swagger_server.models.body
+swagger_server\models\body.py(1): [C0114] Missing module docstring
+swagger_server\models\body.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\body.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\body.py(6): [W0611] Unused List imported from typing
+swagger_server\models\body.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.certification
+swagger_server\models\certification.py(17): [C0301] Line too long (188/100)
+swagger_server\models\certification.py(135): [C0301] Line too long (101/100)
+swagger_server\models\certification.py(1): [C0114] Missing module docstring
+swagger_server\models\certification.py(12): [R0902Certification] Too many instance attributes (14/7)
+swagger_server\models\certification.py(17): [R0913Certification.__init__] Too many arguments (7/5)
+swagger_server\models\certification.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\certification.py(6): [W0611] Unused List imported from typing
+swagger_server\models\certification.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.education
+swagger_server\models\education.py(17): [C0301] Line too long (210/100)
+swagger_server\models\education.py(1): [C0114] Missing module docstring
+swagger_server\models\education.py(12): [R0902Education] Too many instance attributes (18/7)
+swagger_server\models\education.py(17): [R0913Education.__init__] Too many arguments (9/5)
+swagger_server\models\education.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\education.py(6): [W0611] Unused List imported from typing
+swagger_server\models\education.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.independient_user
+swagger_server\models\independient_user.py(22): [C0301] Line too long (296/100)
+swagger_server\models\independient_user.py(31): [C0301] Line too long (101/100)
+swagger_server\models\independient_user.py(1): [C0114] Missing module docstring
+swagger_server\models\independient_user.py(17): [R0902IndependientUser] Too many instance attributes (20/7)
+swagger_server\models\independient_user.py(22): [R0913IndependientUser.__init__] Too many arguments (10/5)
+swagger_server\models\independient_user.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\independient_user.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\independient_user.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.job_category
+swagger_server\models\job_category.py(1): [C0114] Missing module docstring
+swagger_server\models\job_category.py(18): [W0105JobCategory] String statement has no effect
+swagger_server\models\job_category.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\job_category.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\job_category.py(6): [W0611] Unused List imported from typing
+swagger_server\models\job_category.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.job_offer
+swagger_server\models\job_offer.py(19): [C0301] Line too long (196/100)
+swagger_server\models\job_offer.py(236): [C0304] Final newline missing
+swagger_server\models\job_offer.py(1): [C0114] Missing module docstring
+swagger_server\models\job_offer.py(14): [R0902JobOffer] Too many instance attributes (16/7)
+swagger_server\models\job_offer.py(19): [R0913JobOffer.__init__] Too many arguments (8/5)
+swagger_server\models\job_offer.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\job_offer.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\job_offer.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.laboral_experience
+swagger_server\models\laboral_experience.py(19): [C0301] Line too long (257/100)
+swagger_server\models\laboral_experience.py(22): [C0301] Line too long (104/100)
+swagger_server\models\laboral_experience.py(1): [C0114] Missing module docstring
+swagger_server\models\laboral_experience.py(14): [R0902LaboralExperience] Too many instance attributes (20/7)
+swagger_server\models\laboral_experience.py(19): [R0913LaboralExperience.__init__] Too many arguments (10/5)
+swagger_server\models\laboral_experience.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\laboral_experience.py(6): [W0611] Unused List imported from typing
+swagger_server\models\laboral_experience.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.media
+swagger_server\models\media.py(1): [C0114] Missing module docstring
+swagger_server\models\media.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\media.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\media.py(6): [W0611] Unused List imported from typing
+swagger_server\models\media.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.organization_user
+swagger_server\models\organization_user.py(19): [C0301] Line too long (227/100)
+swagger_server\models\organization_user.py(1): [C0114] Missing module docstring
+swagger_server\models\organization_user.py(14): [R0902OrganizationUser] Too many instance attributes (20/7)
+swagger_server\models\organization_user.py(19): [R0913OrganizationUser.__init__] Too many arguments (10/5)
+swagger_server\models\organization_user.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\organization_user.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\organization_user.py(6): [W0611] Unused List imported from typing
+swagger_server\models\organization_user.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.section
+swagger_server\models\section.py(18): [C0301] Line too long (124/100)
+swagger_server\models\section.py(1): [C0114] Missing module docstring
+swagger_server\models\section.py(13): [R0902Section] Too many instance attributes (10/7)
+swagger_server\models\section.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\section.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\section.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.sector
+swagger_server\models\sector.py(21): [C0301] Line too long (109/100)
+swagger_server\models\sector.py(33): [C0301] Line too long (116/100)
+swagger_server\models\sector.py(1): [C0114] Missing module docstring
+swagger_server\models\sector.py(18): [W0105Sector] String statement has no effect
+swagger_server\models\sector.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\sector.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\sector.py(6): [W0611] Unused List imported from typing
+swagger_server\models\sector.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.tag
+swagger_server\models\tag.py(1): [C0114] Missing module docstring
+swagger_server\models\tag.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\tag.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\tag.py(6): [W0611] Unused List imported from typing
+swagger_server\models\tag.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models.user
+swagger_server\models\user.py(18): [C0301] Line too long (182/100)
+swagger_server\models\user.py(1): [C0114] Missing module docstring
+swagger_server\models\user.py(13): [R0902User] Too many instance attributes (14/7)
+swagger_server\models\user.py(18): [R0913User.__init__] Too many arguments (8/5)
+swagger_server\models\user.py(4): [W0611] Unused date imported from datetime
+swagger_server\models\user.py(4): [W0611] Unused datetime imported from datetime
+swagger_server\models\user.py(6): [W0611] Unused List imported from typing
+swagger_server\models\user.py(6): [W0611] Unused Dict imported from typing
+************* Module swagger_server.models
+swagger_server\models\__init__.py(1): [C0114] Missing module docstring
+************* Module swagger_server.test.test_aplications_controller
+swagger_server\test\test_aplications_controller.py(21): [C0301] Line too long (132/100)
+swagger_server\test\test_aplications_controller.py(32): [C0301] Line too long (131/100)
+swagger_server\test\test_aplications_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_aplications_controller.py(5): [W0611] Unused json imported from flask
+swagger_server\test\test_aplications_controller.py(6): [W0611] Unused BytesIO imported from six
+swagger_server\test\test_aplications_controller.py(8): [W0611] Unused Aplication imported from swagger_server.models.aplication
+************* Module swagger_server.test.test_education_controller
+swagger_server\test\test_education_controller.py(22): [C0301] Line too long (105/100)
+swagger_server\test\test_education_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_education_controller.py(6): [W0611] Unused BytesIO imported from six
+************* Module swagger_server.test.test_general_user_controller
+swagger_server\test\test_general_user_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_general_user_controller.py(5): [W0611] Unused json imported from flask
+swagger_server\test\test_general_user_controller.py(6): [W0611] Unused BytesIO imported from six
+************* Module swagger_server.test.test_independient_user_controller
+swagger_server\test\test_independient_user_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_independient_user_controller.py(6): [W0611] Unused BytesIO imported from six
+************* Module swagger_server.test.test_job_offer_controller
+swagger_server\test\test_job_offer_controller.py(22): [C0301] Line too long (132/100)
+swagger_server\test\test_job_offer_controller.py(60): [C0301] Line too long (131/100)
+swagger_server\test\test_job_offer_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_job_offer_controller.py(6): [W0611] Unused BytesIO imported from six
+swagger_server\test\test_job_offer_controller.py(8): [W0611] Unused Aplication imported from swagger_server.models.aplication
+************* Module swagger_server.test.test_laboral_experience_controller
+swagger_server\test\test_laboral_experience_controller.py(22): [C0301] Line too long (114/100)
+swagger_server\test\test_laboral_experience_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_laboral_experience_controller.py(6): [W0611] Unused BytesIO imported from six
+************* Module swagger_server.test.test_organization_user_controller
+swagger_server\test\test_organization_user_controller.py(1): [C0114] Missing module docstring
+swagger_server\test\test_organization_user_controller.py(6): [W0611] Unused BytesIO imported from six
+swagger_server\test\test_organization_user_controller.py(8): [W0611] Unused IndependientUser imported from swagger_server.models.independient_user
+************* Module swagger_server.test
+swagger_server\test\__init__.py(1): [C0114] Missing module docstring
+swagger_server\test\__init__.py(4): [E0401] Unable to import 'flask_testing'
+swagger_server\test\__init__.py(9): [C0115BaseTestCase] Missing class docstring
+swagger_server\test\__init__.py(11): [C0116BaseTestCase.create_app] Missing function or method docstring
+swagger_server\test\__init__.py(11): [R0201BaseTestCase.create_app] Method could be a function
+swagger_server\test\__init__.py(9): [R0903BaseTestCase] Too few public methods (1/2)
+************* Module swagger_server.test.__init__
+swagger_server\test\__init__.py(1): [R0401] Cyclic import (swagger_server.app -> swagger_server.controllers.general_user_controller)
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.education:146
+==swagger_server.models.laboral_experience:157
+    @property
+    def end_date(self) -> date:
+        """Gets the end_date of this LaboralExperience.
+
+        Date where the laboral experience finished  # noqa: E501
+
+        :return: The end_date of this LaboralExperience.
+        :rtype: date
+        """
+        return self._end_date
+
+    @end_date.setter
+    def end_date(self, end_date: date):
+        """Sets the end_date of this LaboralExperience.
+
+        Date where the laboral experience finished  # noqa: E501
+
+        :param end_date: The end_date of this LaboralExperience.
+        :type end_date: date
+        """
+
+        self._end_date = end_date
+
+    @property
+    def start_date(self) -> date:
+        """Gets the start_date of this LaboralExperience.
+
+        Date where the laboral experience started  # noqa: E501
+
+        :return: The start_date of this LaboralExperience.
+        :rtype: date
+        """
+        return self._start_date
+
+    @start_date.setter
+    def start_date(self, start_date: date):
+        """Sets the start_date of this LaboralExperience.
+
+        Date where the laboral experience started  # noqa: E501
+
+        :param start_date: The start_date of this LaboralExperience.
+        :type start_date: date
+        """
+
+        self._start_date = start_date
+
+    @property
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.job_offer:147
+==swagger_server.models.laboral_experience:247
+    @property
+    def job_category(self) -> JobCategory:
+        """Gets the job_category of this JobOffer.
+
+
+        :return: The job_category of this JobOffer.
+        :rtype: JobCategory
+        """
+        return self._job_category
+
+    @job_category.setter
+    def job_category(self, job_category: JobCategory):
+        """Sets the job_category of this JobOffer.
+
+
+        :param job_category: The job_category of this JobOffer.
+        :type job_category: JobCategory
+        """
+
+        self._job_category = job_category
+
+    @property
+    def location(self) -> str:
+        """Gets the location of this JobOffer.
+
+        Location where the job offer is  # noqa: E501
+
+        :return: The location of this JobOffer.
+        :rtype: str
+        """
+        return self._location
+
+    @location.setter
+    def location(self, location: str):
+        """Sets the location of this JobOffer.
+
+        Location where the job offer is  # noqa: E501
+
+        :param location: The location of this JobOffer.
+        :type location: str
+        """
+
+        self._location = location
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.job_offer:122
+==swagger_server.models.section:106
+    @property
+    def description(self) -> str:
+        """Gets the description of this Section.
+
+        Main text of the section  # noqa: E501
+
+        :return: The description of this Section.
+        :rtype: str
+        """
+        return self._description
+
+    @description.setter
+    def description(self, description: str):
+        """Sets the description of this Section.
+
+        Main text of the section  # noqa: E501
+
+        :param description: The description of this Section.
+        :type description: str
+        """
+        if description is None:
+            raise ValueError("Invalid value for `description`, must not be `None`")  # noqa: E501
+
+        self._description = description
+
+    @property
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.independient_user:110
+==swagger_server.models.organization_user:84
+    @property
+    def name(self) -> str:
+        """Gets the name of this IndependientUser.
+
+        User's name  # noqa: E501
+
+        :return: The name of this IndependientUser.
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name: str):
+        """Sets the name of this IndependientUser.
+
+        User's name  # noqa: E501
+
+        :param name: The name of this IndependientUser.
+        :type name: str
+        """
+        if name is None:
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+
+        self._name = name
+
+    @property
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.education:215
+==swagger_server.models.section:81
+    @property
+    def title(self) -> str:
+        """Gets the title of this Education.
+
+        Title of studies taken  # noqa: E501
+
+        :return: The title of this Education.
+        :rtype: str
+        """
+        return self._title
+
+    @title.setter
+    def title(self, title: str):
+        """Sets the title of this Education.
+
+        Title of studies taken  # noqa: E501
+
+        :param title: The title of this Education.
+        :type title: str
+        """
+        if title is None:
+            raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
+
+        self._title = title
+
+    @property
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 3 files
+==swagger_server.models.certification:184
+==swagger_server.models.education:215
+==swagger_server.models.section:81
+    @property
+    def title(self) -> str:
+        """Gets the title of this Education.
+
+        Title of studies taken  # noqa: E501
+
+        :return: The title of this Education.
+        :rtype: str
+        """
+        return self._title
+
+    @title.setter
+    def title(self, title: str):
+        """Sets the title of this Education.
+
+        Title of studies taken  # noqa: E501
+
+        :param title: The title of this Education.
+        :type title: str
+        """
+        if title is None:
+            raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
+
+        self._title = title
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.job_offer:191
+==swagger_server.models.section:131
+    @property
+    def media(self) -> List[Media]:
+        """Gets the media of this JobOffer.
+
+        Multimedia data related to the job offer  # noqa: E501
+
+        :return: The media of this JobOffer.
+        :rtype: List[Media]
+        """
+        return self._media
+
+    @media.setter
+    def media(self, media: List[Media]):
+        """Sets the media of this JobOffer.
+
+        Multimedia data related to the job offer  # noqa: E501
+
+        :param media: The media of this JobOffer.
+        :type media: List[Media]
+        """
+
+        self._media = media
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.aplication:130
+==swagger_server.models.job_offer:74
+    @property
+    def job_offer_id(self) -> str:
+        """Gets the job_offer_id of this JobOffer.
+
+        Unique identifier of the job offer  # noqa: E501
+
+        :return: The job_offer_id of this JobOffer.
+        :rtype: str
+        """
+        return self._job_offer_id
+
+    @job_offer_id.setter
+    def job_offer_id(self, job_offer_id: str):
+        """Sets the job_offer_id of this JobOffer.
+
+        Unique identifier of the job offer  # noqa: E501
+
+        :param job_offer_id: The job_offer_id of this JobOffer.
+        :type job_offer_id: str
+        """
+
+        self._job_offer_id = job_offer_id
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.independient_user:181
+==swagger_server.models.organization_user:270
+    @property
+    def user(self) -> User:
+        """Gets the user of this IndependientUser.
+
+
+        :return: The user of this IndependientUser.
+        :rtype: User
+        """
+        return self._user
+
+    @user.setter
+    def user(self, user: User):
+        """Sets the user of this IndependientUser.
+
+
+        :param user: The user of this IndependientUser.
+        :type user: User
+        """
+
+        self._user = user
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 3 files
+==swagger_server.models.education:100
+==swagger_server.models.job_offer:122
+==swagger_server.models.section:106
+    @property
+    def description(self) -> str:
+        """Gets the description of this Section.
+
+        Main text of the section  # noqa: E501
+
+        :return: The description of this Section.
+        :rtype: str
+        """
+        return self._description
+
+    @description.setter
+    def description(self, description: str):
+        """Sets the description of this Section.
+
+        Main text of the section  # noqa: E501
+
+        :param description: The description of this Section.
+        :type description: str
+        """
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.controllers.independient_user_controller:147
+==swagger_server.controllers.organization_user_controller:77
+        query = "SELECT Usuariocorreo FROM Usuario WHERE Usuariocorreo = %s"
+        param = [body.user.email]
+        connection = DBConnection()
+        list_accounts = connection.select(query, param)
+        if list_accounts:
+            return response
+        else:
+            token = tokenGenerator()
+            postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
+            pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
+
+            postedMedia = Media()
+            postedMedia.file = body.user.profile_photo.file
+            postedMedia.usuariocorreo = body.user.email
+            postedMedia.save()
+
+            postedUser.fotoperfil = postedMedia.media_id
+            postedUser.save()
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.controllers.independient_user_controller:40
+==swagger_server.controllers.organization_user_controller:40
+        generalUser = User()
+        generalUser.city = retrieveGeneralUser.ciudad
+        generalUser.email = retrieveGeneralUser.correo
+        generalUser.country = retrieveGeneralUser.pais
+        generalUser.user_id = retrieveGeneralUser.usuariocorreo
+
+        try:
+            retrievedPerfilPhoto = Media.get_by_id(retrieveGeneralUser.fotoperfil)
+            profilePhoto = MediaModels()
+            profilePhoto.file = retrievedPerfilPhoto.file
+            generalUser.profile_photo = profilePhoto
+        except DoesNotExist:
+            generalUser.profile_photo = None
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.test.test_aplications_controller:25
+==swagger_server.test.test_job_offer_controller:53
+    def test_get_job_offers_aplications(self):
+        """Test case for get_job_offers_aplications
+
+        Returns a list of aplications in a specified job offer published by the user
+        """
+        response = self.client.open(
+            '/ricardorzan/Employex/1.0.0/users/{user_id}/job_offer/{job_offer_id}/aplications'.format(user_id=56, job_offer_id=56),
+            method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.test.test_aplications_controller:14
+==swagger_server.test.test_job_offer_controller:15
+    def test_add_aplication_to_job_offer(self):
+        """Test case for add_aplication_to_job_offer
+
+        Adds an aplication to a specified job offer
+        """
+        response = self.client.open(
+            '/ricardorzan/Employex/1.0.0/users/{user_id}/job_offers/{job_offer_id}/aplications'.format(user_id=56, job_offer_id=56),
+            method='POST')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 4 files
+==swagger_server.test.test_education_controller:22
+==swagger_server.test.test_independient_user_controller:33
+==swagger_server.test.test_laboral_experience_controller:22
+==swagger_server.test.test_organization_user_controller:34
+            method='POST',
+            data=json.dumps(body),
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+
+if __name__ == '__main__':
+    import unittest
+    unittest.main()
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.section:2
+==swagger_server.models.user:2
+from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
+
+from typing import List, Dict  # noqa: F401
+
+from swagger_server.models.base_model_ import Model
+from swagger_server.models.media import Media  # noqa: F401,E501
+from swagger_server import util
+
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 10 files
+==swagger_server.models.api_response:2
+==swagger_server.models.aplication:2
+==swagger_server.models.aptitude:2
+==swagger_server.models.body:2
+==swagger_server.models.certification:2
+==swagger_server.models.education:2
+==swagger_server.models.job_category:2
+==swagger_server.models.media:2
+==swagger_server.models.sector:2
+==swagger_server.models.tag:2
+from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
+
+from typing import List, Dict  # noqa: F401
+
+from swagger_server.models.base_model_ import Model
+from swagger_server import util
+
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 3 files
+==swagger_server.test.test_aplications_controller:32
+==swagger_server.test.test_general_user_controller:34
+==swagger_server.test.test_job_offer_controller:71
+            method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+
+if __name__ == '__main__':
+    import unittest
+    unittest.main()
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.controllers.independient_user_controller:205
+==swagger_server.controllers.organization_user_controller:136
+            retrieveGeneralUser.save()
+            retrieveMedia.save()
+            response = Response(status=HTTPStatus.OK.value)
+        except DoesNotExist:
+            response = Response(status=HTTPStatus.NOT_FOUND.value)
+        finally:
+            database.close()
+    return response
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 5 files
+==swagger_server.test.test_aplications_controller:33
+==swagger_server.test.test_education_controller:25
+==swagger_server.test.test_general_user_controller:35
+==swagger_server.test.test_job_offer_controller:72
+==swagger_server.test.test_laboral_experience_controller:25
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+
+if __name__ == '__main__':
+    import unittest
+    unittest.main()
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 2 files
+==swagger_server.models.job_offer:2
+==swagger_server.models.laboral_experience:2
+from __future__ import absolute_import
+from datetime import date, datetime  # noqa: F401
+
+from typing import List, Dict  # noqa: F401
+
+from swagger_server.models.base_model_ import Model
+from swagger_server.models.job_category import JobCategory  # noqa: F401,E501
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 5 files
+==swagger_server.test.test_education_controller:22
+==swagger_server.test.test_independient_user_controller:33
+==swagger_server.test.test_job_offer_controller:34
+==swagger_server.test.test_laboral_experience_controller:22
+==swagger_server.test.test_organization_user_controller:34
+            method='POST',
+            data=json.dumps(body),
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 5 files
+==swagger_server.controllers.general_user_controller:120
+==swagger_server.controllers.general_user_controller:95
+==swagger_server.controllers.independient_user_controller:128
+==swagger_server.controllers.job_offer_controller:58
+==swagger_server.controllers.organization_user_controller:57
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()
+    return response
+
+swagger_server\test\__init__.py(1): [R0801] Similar lines in 6 files
+==swagger_server.controllers.general_user_controller:120
+==swagger_server.controllers.general_user_controller:95
+==swagger_server.controllers.independient_user_controller:128
+==swagger_server.controllers.independient_user_controller:208
+==swagger_server.controllers.job_offer_controller:58
+==swagger_server.controllers.organization_user_controller:139
+    except DoesNotExist:
+        response = Response(status=HTTPStatus.NOT_FOUND.value)
+    finally:
+        database.close()
+    return response
+
+
+
+Report
+
+======
+
+1525 statements analysed.
+
+
+
+Statistics by type
+
+------------------
+
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |42     |42         |=          |4.76        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |26     |26         |=          |88.46       |3.85     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |193    |193        |=          |99.48       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |33     |33         |=          |87.88       |9.09     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+
+
+
+External dependencies
+
+---------------------
+
+::
+
+
+    connexion (swagger_server.app,swagger_server.controllers.aplications_controller,swagger_server.controllers.certification_controller,swagger_server.controllers.education_controller,swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.laboral_experience_controller,swagger_server.controllers.organization_user_controller,swagger_server.controllers.section_controller,swagger_server.test)
+
+      \-apps 
+
+        \-flask_app (swagger_server.encoder)
+
+    dateutil 
+
+      \-parser (swagger_server.util)
+
+    flask (swagger_server.app,swagger_server.controllers.aplications_controller,swagger_server.controllers.certification_controller,swagger_server.controllers.education_controller,swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.laboral_experience_controller,swagger_server.controllers.organization_user_controller,swagger_server.controllers.section_controller)
+
+      \-json (swagger_server.test.test_aplications_controller,swagger_server.test.test_education_controller,swagger_server.test.test_general_user_controller,swagger_server.test.test_independient_user_controller,swagger_server.test.test_job_offer_controller,swagger_server.test.test_laboral_experience_controller,swagger_server.test.test_organization_user_controller)
+
+    flask_jwt_extended (swagger_server.controllers.aplications_controller,swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.organization_user_controller)
+
+    flask_limiter (swagger_server.app)
+
+      \-util (swagger_server.app)
+
+    peewee (swagger_server.controllers.aplications_controller,swagger_server.controllers.certification_controller,swagger_server.controllers.education_controller,swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.laboral_experience_controller,swagger_server.controllers.organization_user_controller,swagger_server.controllers.section_controller)
+
+    six (swagger_server.controllers.aplications_controller,swagger_server.controllers.general_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.encoder,swagger_server.models.base_model_,swagger_server.test.test_aplications_controller,swagger_server.test.test_education_controller,swagger_server.test.test_general_user_controller,swagger_server.test.test_independient_user_controller,swagger_server.test.test_job_offer_controller,swagger_server.test.test_laboral_experience_controller,swagger_server.test.test_organization_user_controller,swagger_server.util)
+
+    swagger_server 
+
+      \-app (swagger_server.controllers.general_user_controller)
+
+      \-data 
+
+      | \-DBConnection (swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.organization_user_controller)
+
+      | \-db (swagger_server.controllers.aplications_controller,swagger_server.controllers.certification_controller,swagger_server.controllers.education_controller,swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.laboral_experience_controller,swagger_server.controllers.organization_user_controller,swagger_server.controllers.section_controller)
+
+      \-encoder (swagger_server.test)
+
+      \-models 
+
+      | \-aplication (swagger_server.controllers.aplications_controller,swagger_server.controllers.job_offer_controller,swagger_server.test.test_aplications_controller,swagger_server.test.test_job_offer_controller)
+
+      | \-base_model_ (swagger_server.controllers.general_user_controller)
+
+      | \-certification (swagger_server.controllers.certification_controller,swagger_server.controllers.independient_user_controller)
+
+      | \-education (swagger_server.controllers.education_controller,swagger_server.controllers.independient_user_controller,swagger_server.test.test_education_controller)
+
+      | \-independient_user (swagger_server.controllers.independient_user_controller,swagger_server.test.test_independient_user_controller,swagger_server.test.test_organization_user_controller)
+
+      | \-job_offer (swagger_server.controllers.job_offer_controller,swagger_server.test.test_job_offer_controller)
+
+      | \-laboral_experience (swagger_server.controllers.independient_user_controller,swagger_server.controllers.laboral_experience_controller,swagger_server.test.test_laboral_experience_controller)
+
+      | \-media (swagger_server.controllers.independient_user_controller,swagger_server.controllers.job_offer_controller,swagger_server.controllers.organization_user_controller)
+
+      | \-organization_user (swagger_server.controllers.organization_user_controller,swagger_server.test.test_organization_user_controller)
+
+      | \-section (swagger_server.controllers.independient_user_controller,swagger_server.controllers.section_controller)
+
+      | \-user (swagger_server.controllers.general_user_controller,swagger_server.controllers.independient_user_controller,swagger_server.controllers.organization_user_controller)
+
+      \-util (swagger_server.controllers.aplications_controller,swagger_server.controllers.job_offer_controller,swagger_server.models.api_response,swagger_server.models.aplication,swagger_server.models.aptitude,swagger_server.models.base_model_,swagger_server.models.body,swagger_server.models.certification,swagger_server.models.education,swagger_server.models.independient_user,swagger_server.models.job_category,swagger_server.models.job_offer,swagger_server.models.laboral_experience,swagger_server.models.media,swagger_server.models.organization_user,swagger_server.models.section,swagger_server.models.sector,swagger_server.models.tag,swagger_server.models.user)
+
+
+
+
+
+
+
+Raw metrics
+
+-----------
+
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |1874   |43.89 |1874     |=          |
++----------+-------+------+---------+-----------+
+|docstring |1840   |43.09 |1840     |=          |
++----------+-------+------+---------+-----------+
+|comment   |41     |0.96  |41       |=          |
++----------+-------+------+---------+-----------+
+|empty     |515    |12.06 |515      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+
+
+
+Duplication
+
+-----------
+
+
++-------------------------+-------+---------+-----------+
+|                         |now    |previous |difference |
++=========================+=======+=========+===========+
+|nb duplicated lines      |627    |627      |=          |
++-------------------------+-------+---------+-----------+
+|percent duplicated lines |14.978 |14.978   |=          |
++-------------------------+-------+---------+-----------+
+
+
+
+
+
+
+Messages by category
+
+--------------------
+
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |248    |248      |=          |
++-----------+-------+---------+-----------+
+|refactor   |53     |53       |=          |
++-----------+-------+---------+-----------+
+|warning    |125    |125      |=          |
++-----------+-------+---------+-----------+
+|error      |1      |1        |=          |
++-----------+-------+---------+-----------+
+
+
+
+
+
+
+% errors / warnings by module
+
+-----------------------------
+
+
++---------------------------------------------------------+-------+--------+---------+-----------+
+|module                                                   |error  |warning |refactor |convention |
++=========================================================+=======+========+=========+===========+
+|swagger_server.test.__init__                             |100.00 |0.00    |50.94    |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.aplications_controller        |0.00   |14.40   |0.00     |3.23       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.general_user_controller       |0.00   |12.00   |0.00     |14.92      |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.job_offer_controller          |0.00   |7.20    |0.00     |7.26       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.api_response                       |0.00   |4.80    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.sector                             |0.00   |4.00    |0.00     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.job_category                       |0.00   |4.00    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.user                               |0.00   |3.20    |3.77     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.organization_user                  |0.00   |3.20    |3.77     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.app                                       |0.00   |3.20    |0.00     |2.42       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.tag                                |0.00   |3.20    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.media                              |0.00   |3.20    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.body                               |0.00   |3.20    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.aptitude                           |0.00   |3.20    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.laboral_experience                 |0.00   |2.40    |3.77     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.job_offer                          |0.00   |2.40    |3.77     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.independient_user                  |0.00   |2.40    |3.77     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.certification                      |0.00   |2.40    |3.77     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.education                          |0.00   |2.40    |3.77     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.section                            |0.00   |2.40    |1.89     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.aplication                         |0.00   |2.40    |1.89     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.authorization_controller      |0.00   |2.40    |0.00     |1.61       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_aplications_controller          |0.00   |2.40    |0.00     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_job_offer_controller            |0.00   |1.60    |0.00     |1.21       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_organization_user_controller    |0.00   |1.60    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_general_user_controller         |0.00   |1.60    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.util                                      |0.00   |0.80    |5.66     |1.61       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.section_controller            |0.00   |0.80    |0.00     |5.24       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.laboral_experience_controller |0.00   |0.80    |0.00     |3.23       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_laboral_experience_controller   |0.00   |0.80    |0.00     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_education_controller            |0.00   |0.80    |0.00     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.test.test_independient_user_controller    |0.00   |0.80    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.independient_user_controller  |0.00   |0.00    |9.43     |19.76      |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.organization_user_controller  |0.00   |0.00    |1.89     |10.48      |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.base_model_                        |0.00   |0.00    |1.89     |1.61       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.education_controller          |0.00   |0.00    |0.00     |4.03       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.controllers.certification_controller      |0.00   |0.00    |0.00     |3.63       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.encoder                                   |0.00   |0.00    |0.00     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.__main__                                  |0.00   |0.00    |0.00     |0.81       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+|swagger_server.models.__init__                           |0.00   |0.00    |0.00     |0.40       |
++---------------------------------------------------------+-------+--------+---------+-----------+
+
+
+
+
+
+
+Messages
+
+--------
+
+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|unused-import                  |107         |
++-------------------------------+------------+
+|line-too-long                  |54          |
++-------------------------------+------------+
+|invalid-name                   |50          |
++-------------------------------+------------+
+|wrong-import-order             |48          |
++-------------------------------+------------+
+|missing-module-docstring       |40          |
++-------------------------------+------------+
+|trailing-whitespace            |25          |
++-------------------------------+------------+
+|duplicate-code                 |24          |
++-------------------------------+------------+
+|ungrouped-imports              |12          |
++-------------------------------+------------+
+|too-many-instance-attributes   |9           |
++-------------------------------+------------+
+|unused-argument                |7           |
++-------------------------------+------------+
+|too-many-arguments             |7           |
++-------------------------------+------------+
+|missing-function-docstring     |5           |
++-------------------------------+------------+
+|pointless-string-statement     |4           |
++-------------------------------+------------+
+|no-else-return                 |3           |
++-------------------------------+------------+
+|missing-final-newline          |3           |
++-------------------------------+------------+
+|missing-class-docstring        |3           |
++-------------------------------+------------+
+|unused-variable                |2           |
++-------------------------------+------------+
+|superfluous-parens             |2           |
++-------------------------------+------------+
+|singleton-comparison           |2           |
++-------------------------------+------------+
+|redefined-builtin              |2           |
++-------------------------------+------------+
+|import-outside-toplevel        |2           |
++-------------------------------+------------+
+|bare-except                    |2           |
++-------------------------------+------------+
+|useless-object-inheritance     |1           |
++-------------------------------+------------+
+|trailing-newlines              |1           |
++-------------------------------+------------+
+|too-many-statements            |1           |
++-------------------------------+------------+
+|too-many-return-statements     |1           |
++-------------------------------+------------+
+|too-many-nested-blocks         |1           |
++-------------------------------+------------+
+|too-many-locals                |1           |
++-------------------------------+------------+
+|too-many-branches              |1           |
++-------------------------------+------------+
+|too-few-public-methods         |1           |
++-------------------------------+------------+
+|protected-access               |1           |
++-------------------------------+------------+
+|no-self-use                    |1           |
++-------------------------------+------------+
+|multiple-imports               |1           |
++-------------------------------+------------+
+|inconsistent-return-statements |1           |
++-------------------------------+------------+
+|import-error                   |1           |
++-------------------------------+------------+
+|cyclic-import                  |1           |
++-------------------------------+------------+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+
+Your code has been rated at 7.17/10 (previous run: 7.17/10, +0.00)
+
+
+

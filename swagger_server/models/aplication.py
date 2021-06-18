@@ -14,7 +14,7 @@ class Aplication(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, _date: date=None, aproved: bool=False, independient_user_id: str=None, job_offer_id: str=None):  # noqa: E501
+    def __init__(self, date: date=None, aproved: bool=False, independient_user_id: str=None, job_offer_id: str=None, user_id: str=None):  # noqa: E501
         """Aplication - a model defined in Swagger
 
         :param _date: The _date of this Aplication.  # noqa: E501
@@ -27,22 +27,25 @@ class Aplication(Model):
         :type job_offer_id: str
         """
         self.swagger_types = {
-            '_date': date,
+            'date': date,
             'aproved': bool,
             'independient_user_id': str,
-            'job_offer_id': str
+            'job_offer_id': str,
+            'user_id': str
         }
 
         self.attribute_map = {
-            '_date': 'date',
+            'date': 'date',
             'aproved': 'aproved',
-            'independient_user_id': 'independientUserId',
-            'job_offer_id': 'jobOfferId'
+            'independient_user_id': 'independient_user_id',
+            'job_offer_id': 'job_offer_id',
+            'user_id': 'user_id'
         }
-        self.__date = _date
+        self._date = date
         self._aproved = aproved
         self._independient_user_id = independient_user_id
         self._job_offer_id = job_offer_id
+        self._user_id = user_id
 
     @classmethod
     def from_dict(cls, dikt) -> 'Aplication':
@@ -56,7 +59,7 @@ class Aplication(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _date(self) -> date:
+    def date(self) -> date:
         """Gets the _date of this Aplication.
 
         Date on which was applied for the job  # noqa: E501
@@ -66,8 +69,8 @@ class Aplication(Model):
         """
         return self.__date
 
-    @_date.setter
-    def _date(self, _date: date):
+    @date.setter
+    def date(self, _date: date):
         """Sets the _date of this Aplication.
 
         Date on which was applied for the job  # noqa: E501
@@ -150,3 +153,26 @@ class Aplication(Model):
         """
 
         self._job_offer_id = job_offer_id
+
+    @property
+    def user_id(self) -> str:
+        """Gets the user_id of this Aplication.
+
+        User's id  # noqa: E501
+
+        :return: The user_id of this Aplication.
+        :rtype: float
+        """
+        return self._user_id
+
+    @user_id.setter
+    def user_id(self, user_id: str):
+        """Sets the user_id of this Aplication.
+
+        User's id  # noqa: E501
+
+        :param user_id: The user_id of this Aplication.
+        :type user_id: float
+        """
+
+        self._user_id = user_id

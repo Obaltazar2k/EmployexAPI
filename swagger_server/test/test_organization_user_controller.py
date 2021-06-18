@@ -19,7 +19,7 @@ class TestOrganizationUserController(BaseTestCase):
         Get user by user id
         """
         response = self.client.open(
-            '/ricardorzan/Employex/1.0.0/users/organization_user/{userId}'.format(user_id=56),
+            '/ricardorzan/Employex/1.0.0/users/organization_user/{user_id}'.format(user_id=56),
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))

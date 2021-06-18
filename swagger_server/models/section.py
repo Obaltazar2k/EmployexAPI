@@ -35,7 +35,7 @@ class Section(Model):
         }
 
         self.attribute_map = {
-            'section_id': 'sectionId',
+            'section_id': 'section_id',
             'title': 'title',
             'description': 'description',
             'media': 'media'

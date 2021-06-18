@@ -28,7 +28,7 @@ class Media(Model):
         }
 
         self.attribute_map = {
-            'media_id': 'mediaId',
+            'media_id': 'media_id',
             'file': 'file'
         }
         self._media_id = media_id

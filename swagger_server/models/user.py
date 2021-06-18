@@ -44,13 +44,14 @@ class User(Model):
         }
 
         self.attribute_map = {
+            'user_id': 'user_id',
             'user_id': 'userId',
             'email': 'email',
             'password': 'password',
             'city': 'city',
             'country': 'country',
-            'user_status': 'userStatus',
-            'profile_photo': 'profilePhoto'
+            'user_status': 'user_status',
+            'profile_photo': 'profile_photo'
         }
         self._user_id = user_id
         self._email = email

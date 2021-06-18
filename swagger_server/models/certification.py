@@ -6,7 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from swagger_server.models.base_model_ import Model
-import re  # noqa: F401,E501
 from swagger_server import util
 
 
@@ -41,11 +40,11 @@ class Certification(Model):
         }
 
         self.attribute_map = {
-            'credential_id': 'credentialId',
-            'credential_url': 'credentialURL',
-            'issuing_company': 'issuingCompany',
-            'expiration_date': 'expirationDate',
-            'expedition_date': 'expeditionDate',
+            'credential_id': 'credential_id',
+            'credential_url': 'credential_url',
+            'issuing_company': 'issuing_company',
+            'expiration_date': 'expiration_date',
+            'expedition_date': 'expedition_date',
             'title': 'title'
         }
         self._credential_id = credential_id
