@@ -153,8 +153,10 @@ def register_indpendient_user(body):  # noqa: E501
             pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
 
             postedMedia = Media()
-            if body.user.profile_photo.file != None:
+            try:
                 postedMedia.file = body.user.profile_photo.file
+            except:
+                postedMedia.file = None 
             postedMedia.usuariocorreo = body.user.email
             postedMedia.save()
 
