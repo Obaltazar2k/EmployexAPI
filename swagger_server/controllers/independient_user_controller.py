@@ -1,4 +1,5 @@
 import connexion
+from _typeshed import NoneType
 import json
 
 from flask import Response
@@ -153,7 +154,7 @@ def register_indpendient_user(body):  # noqa: E501
             pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
 
             postedMedia = Media()
-            if body.user.profile_photo.file:
+            if body.user.profile_photo.file != NoneType:
                 postedMedia.file = body.user.profile_photo.file
             postedMedia.usuariocorreo = body.user.email
             postedMedia.save()
