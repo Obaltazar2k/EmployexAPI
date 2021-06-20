@@ -84,9 +84,14 @@ def add_job_offer(body):  # noqa: E501
         tipoempleo=body.job_category,
         ubicacion=body.location,
         Usuariocorreo=current_user)
-    for media in body.media:
+    try:
+        for media in body.media:
+            Media.create(
+                file=media.file,
+                ofertadetrabajo=job_offer)
+    except:
         Media.create(
-            file=media.file,
+            file= None,
             ofertadetrabajo=job_offer)
     database.close()
     if job_offer:
