@@ -74,16 +74,17 @@ def register_organization_user(body):  # noqa: E501
     response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     if connexion.request.is_json:
         body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
-        list_accounts = Organizacion.select().where(Organizacion.usuariocorreo == body.user.email)
+        list_accounts = Organizacion.get_by_id(body.user.email)
         if list_accounts.exists():
-            return response
+            return Response(status=HTTPStatus.CONFLICT.value)
         else:
             token = tokenGenerator()
             postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
             pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
 
             postedMedia = Media()
-            postedMedia.file = body.user.profile_photo.file
+            if body.user.profile_photo.file:
+                postedMedia.file = body.user.profile_photo.file
             postedMedia.usuariocorreo = body.user.email
             postedMedia.save()
 
