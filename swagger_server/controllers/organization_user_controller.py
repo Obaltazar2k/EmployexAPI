@@ -74,10 +74,10 @@ def register_organization_user(body):  # noqa: E501
     response = Response(status=HTTPStatus.UNAUTHORIZED.value)
     if connexion.request.is_json:
         body = OrganizationUser.from_dict(connexion.request.get_json())  # noqa: E501
-        list_accounts = Organizacion.get_by_id(body.user.email)
-        if list_accounts.exists():
+        try:
+            list_accounts = Organizacion.get_by_id(body.user.email)
             return Response(status=HTTPStatus.CONFLICT.value)
-        else:
+        except DoesNotExist:
             token = tokenGenerator()
             postedUser = Usuario.create(ciudad = body.user.city, contrasenia = body.user.password, correo = body.user.email,
             pais = body.user.country, usuariocorreo = body.user.email, validationtoken = token, validated = 0)
